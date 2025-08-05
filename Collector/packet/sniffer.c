@@ -2,7 +2,6 @@
 #include<pcap.h>
 #include<windows.h>
 
-#define PCAP_ERRBUF_SIZE 
 
 int main(){
     pcap_if_t *alldevs,*dev;
@@ -18,6 +17,6 @@ int main(){
         }
         printf("\n");
     }
-
-    int i=0;
+    printf("completed\n");
+    return 1;
 }
