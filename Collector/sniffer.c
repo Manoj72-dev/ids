@@ -3,17 +3,27 @@
 #include<windows.h>
 #include<winsock2.h>
 #include<ws2tcpip.h>
-#include <stdint.h>
+#include<stdint.h>
 #include<stdlib.h>
 
 
 #define ETHERNET_HEADER_LEN 14
 #define VLAN_TAG_LEN 4
+#define IPv6_HEADER_LEN 40
 
 struct eth_header{
     u_char dest[6]; //destination mac-address
     u_char src[6];  //host mac- address
     u_short type;  //
+};
+
+struct ip6_header{
+    u_int ver_tc_fl;
+    u_short payload_len;
+    u_char next_header;
+    u_char hop_limit;
+    struct in6_addr src_ip;
+    struct in6_addr dest_ip;
 };
 
 struct ip4_header{
@@ -110,7 +120,7 @@ void parse_ip4_header(char *packet_info,int offset, const u_char *packet){
     strcpy(dest_ip_str, inet_ntoa(ip->dest_ip));
     u_char ihl = ip->ver_ihl & 0X0F;
     offset += ihl*4;
-    sprintf(packet_info + strlen(packet_info)," SRC_IP: %s ; DEST_IP: %s ; PROTO: %d ; TTL: %d ; TLEN: %d ; ID: %d",src_ip_str,dest_ip_str, ip->proto,ip->ttl, ntohs(ip->tlen), ntohs(ip->identification));
+    sprintf(packet_info + strlen(packet_info),"IP_VER: 4 ; SRC_IP: %s ; DEST_IP: %s ; PROTO: %d ; TTL: %d ; TLEN: %d ; ID: %d",src_ip_str,dest_ip_str, ip->proto,ip->ttl, ntohs(ip->tlen), ntohs(ip->identification));
     
     switch(ip->proto){
         case 17: 
@@ -130,6 +140,31 @@ void parse_ip4_header(char *packet_info,int offset, const u_char *packet){
     }
     
 }
+
+void parse_ip6_header(char *packet_info, int offset, const char *packet){
+    struct ip6_header *ip = (struct ip6_header *)(packet + offset);
+    offset += IPv6_HEADER_LEN;
+    
+    char src_ip[INET6_ADDRSTRLEN];
+    char dest_ip[INET6_ADDRSTRLEN];
+
+    inet_ntop(AF_INET6,&(ip->src_ip),src_ip, sizeof(src_ip));
+    inet_ntop(AF_INET6,&(ip->dest_ip),dest_ip, sizeof(dest_ip));
+
+    sprintf(packet_info + strlen(packet_info),"IP_VER: 6 ;SRC_IP: %s ; DEST_IP: %s ; PROTO: %d ; HOP_LIMIT: %d ; PAYLOAD_LEN: %d", src_ip, dest_ip, ip->next_header, ip->hop_limit, ntohs(ip->payload_len));
+    switch (ip->next_header){
+        case 6:
+            parse_tcp_header(packet_info,offset,packet);
+            break;
+        case 17:
+            parse_udp_header(packet_info,offset,packet);
+            break;
+        default:
+            return;
+    }
+    printf("%s\n", packet_info);
+}
+
 
 void packet_handler(const struct pcap_pkthdr *header, const u_char *pkt_data){
     char packet_info[1024] = "";
@@ -153,11 +188,12 @@ void packet_handler(const struct pcap_pkthdr *header, const u_char *pkt_data){
         type = ntohs(vlan->type);
         offset += VLAN_TAG_LEN;
     }
-
     if(type == 0x0800){
         parse_ip4_header(packet_info, offset, pkt_data);
     }
-    printf("%s\n",packet_info);
+    else if(type == 0x86DD){
+        parse_ip6_header(packet_info, offset,pkt_data);
+    }
 }
 
 
