@@ -52,35 +52,53 @@ char *GetState(DWORD par){
 }
 
 char *GetProcessName(DWORD pid){
+    if (pid == 4) {
+        char *systemName = malloc(7);
+        strcpy(systemName, "System");
+        return systemName;
+    }
+
     HANDLE hProcess = OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, FALSE, pid);
-
-    char fullPAth[MAX_PATH];
-    DWORD size = MAX_PATH;
-
-    if(!QueryFullProcessImageNameA(hProcess,0,fullPAth, &size)){
-        CloseHandle(hProcess);
+    if (hProcess == NULL) {
         return NULL;
     }
 
+    char fullPath[MAX_PATH];
+    DWORD size = MAX_PATH;
+
+    if (!QueryFullProcessImageNameA(hProcess, 0, fullPath, &size)) {
+        CloseHandle(hProcess);
+        return NULL;
+    }
     CloseHandle(hProcess);
 
-   
+    char *baseName = strrchr(fullPath, '\\');
+    if (baseName) baseName++;
+    else baseName = fullPath;
 
-    char *result = malloc(strlen(fullPAth) + 1);
-    if (result) strcpy(result, fullPAth);
+    char *result = malloc(strlen(baseName) + 1);
+    if (result) strcpy(result, baseName);
     return result;
-
 }
 
-DWORD WINAPI Ipv4_table(LPVOID Param){
+
+DWORD WINAPI TCP_table(LPVOID Param){
     PMIB_TCPTABLE_OWNER_PID tcpTable=NULL;
-    DWORD tcpsize =0;
-    DWORD retval;
+    PMIB_TCP6TABLE_OWNER_PID  v6tcpTable=NULL;
+    DWORD tcpsize =0,v6tcpsize = 0;
+    DWORD retval, v6val;
 
     retval = GetExtendedTcpTable(NULL,&tcpsize,TRUE,AF_INET,TCP_TABLE_OWNER_PID_ALL,0);
+    v6val = GetExtendedTcpTable(NULL, &v6tcpsize,TRUE,AF_INET6,TCP_TABLE_OWNER_PID_ALL,0);
+    if(retval == ERROR_INSUFFICIENT_BUFFER){
+        printf("Getting buffer size\n");
+    }
+    
     tcpTable = (PMIB_TCPTABLE_OWNER_PID) malloc(tcpsize);
+    v6tcpTable = (PMIB_TCP6TABLE_OWNER_PID) malloc(v6tcpsize);
 
     retval = GetExtendedTcpTable(tcpTable,&tcpsize,TRUE,AF_INET,TCP_TABLE_OWNER_PID_ALL,0);
+    v6val = GetExtendedTcpTable(v6tcpTable, &v6tcpsize,TRUE,AF_INET6,TCP_TABLE_OWNER_PID_ALL,0);
 
     for(DWORD i = 0; i < tcpTable->dwNumEntries;i++){
         char state_info[1024];
@@ -89,8 +107,7 @@ DWORD WINAPI Ipv4_table(LPVOID Param){
         remoteAddr.S_un.S_addr = tcpTable->table[i].dwRemoteAddr;
 
         char *procName = GetProcessName(tcpTable->table[i].dwOwningPid);
-        sprintf(state_info,"[%lu] Local: %s:%u  Remote: %s:%u  PID: %lu ProcessName: %s  State: %s\n",
-               i,
+        sprintf(state_info,"Local: %s:%u  Remote: %s:%u  PID: %lu ProcessName: %s  State: %s\n",
                inet_ntoa(localAddr),
                ntohs((u_short)tcpTable->table[i].dwLocalPort),
                inet_ntoa(remoteAddr),
@@ -100,6 +117,30 @@ DWORD WINAPI Ipv4_table(LPVOID Param){
                GetState(tcpTable->table[i].dwState));
         printf("%s\n ",state_info);
     }
+
+    for(DWORD i=0;i<v6tcpTable->dwNumEntries;i++){
+        char state_info[1024];
+        char localaddr[INET6_ADDRSTRLEN];
+        char remoteaddr[INET6_ADDRSTRLEN];
+        inet_ntop(AF_INET6,&(v6tcpTable->table[i].ucRemoteAddr), remoteaddr, INET6_ADDRSTRLEN);
+        inet_ntop(AF_INET6,&(v6tcpTable->table[i].ucLocalAddr) ,localaddr,INET6_ADDRSTRLEN);
+        
+        char *proname =  GetProcessName(v6tcpTable->table[i].dwOwningPid);
+        sprintf(state_info,"Local: %s:%u  LocalScope: %u Remote: %s:%u RemoteScope: %u PID: %u ProcessName: %s State: %s\n",
+            localaddr,
+            ntohs((u_short)v6tcpTable->table[i].dwLocalPort),
+            ntohs((u_short)v6tcpTable->table[i].dwLocalScopeId),
+            remoteaddr,
+            ntohs((u_short)v6tcpTable->table[i].dwRemotePort),
+            ntohs((u_short)v6tcpTable->table[i].dwRemoteScopeId),
+            v6tcpTable->table[i].dwOwningPid,
+            proname,
+            GetState(v6tcpTable->table[i].dwState)
+        );
+        printf("%s\n",state_info);
+    }
+
+
     free(tcpTable);
     return 0;
 }
@@ -107,7 +148,7 @@ DWORD WINAPI Ipv4_table(LPVOID Param){
 
 int main(){
     DWORD ThreadId;
-    HANDLE Thread1 = CreateThread(NULL,0,Ipv4_table,NULL,0,&ThreadId);
+    HANDLE Thread1 = CreateThread(NULL,0,TCP_table,NULL,0,&ThreadId);
     WaitForSingleObject(Thread1,INFINITE);
     CloseHandle(Thread1);
 }
