@@ -6,45 +6,45 @@
 #include<psapi.h>
 #include<tchar.h>
 
+
 char *GetState(DWORD par){
     int val = (int)par;
     switch(val){
         case 1:
             return "CLOSED";
-            break;
         case 2:
             return "LISTEN";
-            break;
+            
         case 3:
             return "SYN-SENT";
-            break;
+            
         case 4:
-            return "SYN-RECIVED";
-            break;
+            return "SYN-RECEIVED";
+            
         case 5:
             return "ESTABLISHED";
-            break;
+            
         case 6:
             return "FIN-WAIT-1";
-            break;
+           
         case 7:
             return "FIN-WAIT-2";
-            break;
+           
         case 8:
             return "CLOSE-WAIT";
-            break;
+           
         case 9:
             return "CLOSING";
-            break;
+           
         case 10:
             return "LAST-ACK";
-            break;
+           
         case 11:
             return "TIME-WAIT";
-            break;
+            
         case 12:
             return "DELETE TCB";
-            break;
+            
         default:
             return NULL;
     }
@@ -53,8 +53,7 @@ char *GetState(DWORD par){
 
 char *GetProcessName(DWORD pid){
     if (pid == 4) {
-        char *systemName = malloc(7);
-        strcpy(systemName, "System");
+        char *systemName = _strdup("System");
         return systemName;
     }
 
@@ -112,10 +111,11 @@ DWORD WINAPI TCP_table(LPVOID Param){
                ntohs((u_short)tcpTable->table[i].dwLocalPort),
                inet_ntoa(remoteAddr),
                ntohs((u_short)tcpTable->table[i].dwRemotePort),
-               tcpTable->table[i].dwOwningPid,
+               (unsigned long)tcpTable->table[i].dwOwningPid,
                procName,
                GetState(tcpTable->table[i].dwState));
         printf("%s\n ",state_info);
+        free(procName);
     }
 
     for(DWORD i=0;i<v6tcpTable->dwNumEntries;i++){
@@ -138,17 +138,70 @@ DWORD WINAPI TCP_table(LPVOID Param){
             GetState(v6tcpTable->table[i].dwState)
         );
         printf("%s\n",state_info);
+        free(proname);
     }
 
 
     free(tcpTable);
+    free(v6tcpTable);
     return 0;
 }
 
+DWORD WINAPI UDP_table(LPVOID Param){
+    PMIB_UDPTABLE_OWNER_PID v4table = NULL;
+    PMIB_UDP6TABLE_OWNER_PID v6table = NULL;
+    DWORD v4size = 0, v6size =0;
+    DWORD v4val,v6val;
 
+    v4val = GetExtendedUdpTable(NULL,&v4size, TRUE, AF_INET, UDP_TABLE_OWNER_PID,0);
+    v6val = GetExtendedUdpTable(NULL,&v6size, TRUE,AF_INET6, UDP_TABLE_OWNER_PID,0);
+    if(v4val == ERROR_INSUFFICIENT_BUFFER){
+        printf("Getting buffer size\n");
+    }
+    v4table = (PMIB_UDPTABLE_OWNER_PID)malloc(v4size);
+    v6table = (PMIB_UDP6TABLE_OWNER_PID)malloc(v6size);
+
+    v4val = GetExtendedUdpTable(v4table,&v4size,TRUE,AF_INET, UDP_TABLE_OWNER_PID,0);
+    v6val = GetExtendedUdpTable(v6table,&v6size, TRUE,AF_INET6, UDP_TABLE_OWNER_PID,0);
+    for(DWORD i=0;i<v4table->dwNumEntries;i++){
+        char state_info[1024];
+        struct in_addr localAddr;
+        localAddr.S_un.S_addr = v4table->table[i].dwLocalAddr;
+        char *proname = GetProcessName(v4table->table[i].dwOwningPid);
+        sprintf(state_info,"Local : %s:%u PID : %u ProcessName: %s",
+            inet_ntoa(localAddr),
+            ntohs((u_short)v4table->table[i].dwLocalPort),
+            v4table->table[i].dwOwningPid,
+            proname
+        );
+        printf("%s\n",state_info);
+        free(proname);
+    }
+
+    for(DWORD i=0;i<v6table->dwNumEntries;i++){
+        char state_info[1024];
+        char localAddr[INET6_ADDRSTRLEN];
+        inet_ntop(AF_INET6,&(v6table->table[i].ucLocalAddr),localAddr,INET6_ADDRSTRLEN);
+        char *proname = GetProcessName(v6table->table[i].dwOwningPid);
+
+        sprintf(state_info,"Local : %s:%u ScopeID : %u PID : %u ProcessName : %s",
+            localAddr,
+            ntohs((u_short)v6table->table[i].dwLocalPort),
+            ntohs((u_short)v6table->table[i].dwLocalScopeId),
+            v6table->table[i].dwOwningPid,
+            proname
+        );
+
+        printf("%s\n",state_info);
+        free(proname);
+    }
+    free(v4table);
+    free(v6table);
+    return 0;
+}
 int main(){
     DWORD ThreadId;
-    HANDLE Thread1 = CreateThread(NULL,0,TCP_table,NULL,0,&ThreadId);
+    HANDLE Thread1 = CreateThread(NULL,0,UDP_table,NULL,0,&ThreadId);
     WaitForSingleObject(Thread1,INFINITE);
     CloseHandle(Thread1);
 }
