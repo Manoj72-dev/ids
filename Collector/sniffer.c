@@ -6,78 +6,7 @@
 #include<stdint.h>
 #include<stdlib.h>
 
-
-#define ETHERNET_HEADER_LEN 14
-#define VLAN_TAG_LEN 4
-#define IPv6_HEADER_LEN 40
-
-struct eth_header{
-    u_char dest[6]; //destination mac-address
-    u_char src[6];  //host mac- address
-    u_short type;  //
-};
-
-struct ip6_header{
-    u_int ver_tc_fl;
-    u_short payload_len;
-    u_char next_header;
-    u_char hop_limit;
-    struct in6_addr src_ip;
-    struct in6_addr dest_ip;
-};
-
-struct ip4_header{
-    u_char ver_ihl; //version (4 bits) + internet header length (4 bits)
-    u_char tos; //type of servies   
-    u_short tlen ; //total length
-    u_short identification; // Identification 
-    u_short flags_fo; // Flags(3 bits) + Fragment offset (13 bits)
-    u_char ttl;  //time to live
-    u_char proto; //Protocol
-    u_short crc; //checksum
-    struct in_addr src_ip; //source address
-    struct in_addr dest_ip; //Destination address
-};
-
-struct tcp_header{
-    u_short sport;  //source port
-    u_short dport;  // destination port
-    u_int seq; // sequence number
-    u_int ack; // ack number
-    u_char data_offset_reserved;  
-    u_char flags; 
-    u_short win; // window size
-    u_short checksum; 
-    u_short urg_ptr; // urgent pointer to the data that is urgent
-};
-
-struct udp_header{
-    u_short sport;
-    u_short dport;
-    u_short len;
-    u_short checksum;
-};
-
-struct icmp_header{
-    u_char type;
-    u_char code;
-    u_short checksum;
-    u_short id;
-    u_short sequence;
-};
-
-struct igmp_header{
-    u_char type;
-    u_char code;
-    u_short checksum;
-    struct in_addr group_address;
-};
-
-struct vlan_tag{
-    u_short tci;
-    u_short type;
-};
-
+#include "sniffer.h"
 
 void parse_udp_header(char *packet_info, int offset, const u_char *packet) {
     struct udp_header *udp = (struct udp_header *)(packet + offset);
@@ -162,7 +91,7 @@ void parse_ip6_header(char *packet_info, int offset, const char *packet){
         default:
             return;
     }
-    printf("%s\n", packet_info);
+    
 }
 
 
@@ -194,49 +123,14 @@ void packet_handler(const struct pcap_pkthdr *header, const u_char *pkt_data){
     else if(type == 0x86DD){
         parse_ip6_header(packet_info, offset,pkt_data);
     }
+    printf("%s\n", packet_info);
 }
 
 
 
 
-DWORD WINAPI capture_packets(LPVOID wifidev){
-    pcap_if_t * device = (pcap_if_t *)wifidev;
-    pcap_t *handle;
-    struct bpf_program fp;
-    bpf_u_int32 net;
-    const char *filter_exp = "ip or ip6";
-
-    char errbuf[PCAP_ERRBUF_SIZE];
-
-    handle = pcap_open_live(device->name,65536,1,0,errbuf);
-
-    if (pcap_compile(handle, &fp, filter_exp, 0, net) == -1) {
-        fprintf(stderr, "Couldn't parse filter %s: %s\n", filter_exp, pcap_geterr(handle));
-        return 2;
-    }
-    if (pcap_setfilter(handle, &fp) == -1) {
-        fprintf(stderr, "Couldn't install filter %s: %s\n", filter_exp, pcap_geterr(handle));
-        return 2;
-    }
-
-    if(handle == NULL){
-        printf("Canot open the Devices %s: %s\n",device->name,errbuf);
-        exit(1);
-    }
-
-    struct pcap_pkthdr *header;
-    const u_char *data;
-    int res;
-    while((res = pcap_next_ex(handle, &header, &data)) >= 0){
-        if(res == 0) continue;
-        packet_handler(header,data);
-    }
-    pcap_close(handle);
-    return 0;
-}
-
-int main(){
-    pcap_if_t *alldevs,*wifidev, *ethdev, *dev; // variables to store devices in the machine (in a linklist)//
+DWORD WINAPI capture_packets(LPVOID Param){
+    pcap_if_t *alldevs,*wifidev, *dev; // variables to store devices in the machine (in a linklist)//
     char errbuf[PCAP_ERRBUF_SIZE];  // errbuf to store the errors //
 
     if(pcap_findalldevs(&alldevs, errbuf) == -1){ // pcap_findalldevs() scan machice and store all the devices that are in the machine in alldevs //
@@ -251,17 +145,43 @@ int main(){
         }
         i++;
     }
+    
+    pcap_t *handle;
+    struct bpf_program fp;
+    bpf_u_int32 net, mask;
 
-    DWORD threadId1;
-    HANDLE hThread1 = CreateThread(NULL,0,capture_packets,wifidev,0,&threadId1) ;
-    
-    
-    if(hThread1 == NULL){
-        fprintf(stderr,"CreateThread Failed. Error: %lu\n",GetLastError());
-        return 1;
+    if (pcap_lookupnet(wifidev->name, &net, &mask, errbuf) == -1) {
+        net = 0;
+        mask = 0;
+    }
+    const char *filter_exp = "ip or ip6";
+
+    handle = pcap_open_live(wifidev->name,65536,1,0,errbuf);
+    if(handle == NULL){
+        printf("Canot open the Devices %s: %s\n",wifidev->name,errbuf);
+        exit(1);
+    }
+    if (pcap_compile(handle, &fp, filter_exp, 0, net) == -1) {
+        fprintf(stderr, "Couldn't parse filter %s: %s\n", filter_exp, pcap_geterr(handle));
+        return 2;
+    }
+    if (pcap_setfilter(handle, &fp) == -1) {
+        fprintf(stderr, "Couldn't install filter %s: %s\n", filter_exp, pcap_geterr(handle));
+        return 2;
     }
 
-    WaitForSingleObject(hThread1,INFINITE);
-    CloseHandle(hThread1);
-    return 1;
+    
+
+    struct pcap_pkthdr *header;
+    const u_char *data;
+    int res;
+
+    while((res = pcap_next_ex(handle, &header, &data)) >= 0){
+        if(res == 0){ 
+            continue;
+        }
+        packet_handler(header,data);
+    }
+    pcap_close(handle);
+    return 0;
 }
