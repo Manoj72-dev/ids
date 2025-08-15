@@ -170,8 +170,6 @@ DWORD WINAPI capture_packets(LPVOID Param){
         return 2;
     }
 
-    
-
     struct pcap_pkthdr *header;
     const u_char *data;
     int res;
