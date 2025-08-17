@@ -130,6 +130,8 @@ void packet_handler(const struct pcap_pkthdr *header, const u_char *pkt_data){
 
 
 DWORD WINAPI capture_packets(LPVOID Param){
+    char *adapter = (char *)Param;
+
     pcap_if_t *alldevs,*wifidev, *dev; // variables to store devices in the machine (in a linklist)//
     char errbuf[PCAP_ERRBUF_SIZE];  // errbuf to store the errors //
 
@@ -139,7 +141,7 @@ DWORD WINAPI capture_packets(LPVOID Param){
     }
     int i=1;
     for(dev = alldevs; dev ;dev= dev->next){
-        if(i == 5){
+        if(strcmp(adapter,dev->name) == 0 ){
             wifidev = dev;
             printf("Devices selected: %s\n",dev->description);
         }
@@ -155,8 +157,7 @@ DWORD WINAPI capture_packets(LPVOID Param){
         mask = 0;
     }
     const char *filter_exp = "ip or ip6";
-
-    handle = pcap_open_live(wifidev->name,65536,1,0,errbuf);
+    handle = pcap_open_live(wifidev->name,65536,1,100,errbuf);
     if(handle == NULL){
         printf("Canot open the Devices %s: %s\n",wifidev->name,errbuf);
         exit(1);

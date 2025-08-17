@@ -1,0 +1,25 @@
+{
+  "adapter": "\\Device\\NPF_{D2F0CE5E-F78E-459B-B1B9-6466FA75EABA}",
+  "directories": [
+    "C:\\Windows\\System32",
+    "C:\\Windows\\System32\\drivers",
+    "C:\\Windows\\Temp",
+    "C:\\Users\\manoj\\Documents"
+  ],
+  "keys": [
+    { "root": "HKEY_CURRENT_USER", "path": "Software\\Microsoft\\Windows\\CurrentVersion\\Run" },
+    { "root": "HKEY_CURRENT_USER", "path": "Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce" },
+    { "root": "HKEY_CURRENT_USER", "path": "Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon" },
+    { "root": "HKEY_LOCAL_MACHINE", "path": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run" },
+    { "root": "HKEY_LOCAL_MACHINE", "path": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce" },
+    { "root": "HKEY_LOCAL_MACHINE", "path": "SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Run" },
+    { "root": "HKEY_LOCAL_MACHINE", "path": "SYSTEM\\CurrentControlSet\\Services" },
+    { "root": "HKEY_LOCAL_MACHINE", "path": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon" },
+    { "root": "HKEY_LOCAL_MACHINE", "path": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions" },
+    { "root": "HKEY_LOCAL_MACHINE", "path": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects" },
+    { "root": "HKEY_LOCAL_MACHINE", "path": "SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\Interfaces" },
+    { "root": "HKEY_LOCAL_MACHINE", "path": "SYSTEM\\CurrentControlSet\\Services\\SharedAccess\\Parameters\\FirewallPolicy" },
+    { "root": "HKEY_LOCAL_MACHINE", "path": "SOFTWARE\\Policies\\Microsoft\\Windows Defender" },
+    { "root": "HKEY_LOCAL_MACHINE", "path": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options" }
+  ]
+}

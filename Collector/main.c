@@ -1,30 +1,64 @@
-#include "sniffer.h"
-#include "file.h"
-#include "state.h"
-#include "process.h"
-#include "registry.h"
+#include "Network/sniffer.h"
+#include "FileMonitor/file.h"
+#include "Network/state.h"
+#include "ProcessMonitor/process.h"
+#include "RegistryMonitor/registry.h"
+#include "Third_party/cjson.h"
+#include "config.h"
 
 #include <windows.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+cJSON *get_json(){
+    FILE *f = fopen("..\\Config\\config.json", "r");
+    if (!f) {
+        printf("Error: Could not open config.json\n");
+        return NULL;
+    }
+
+    fseek(f, 0, SEEK_END);
+    long len = ftell(f);
+    fseek(f, 0, SEEK_SET);
+
+    char *data = malloc(len + 1);
+    if (!data) {
+        fclose(f);
+        return NULL;
+    }
+
+    fread(data, 1, len, f);
+    data[len] = '\0';
+    fclose(f);
+
+    cJSON *json = cJSON_Parse(data);
+    free(data);
+    return json;
+}
 
 
 int main(){
-    DWORD threadId[5];
-    HANDLE hThread[5];
-    hThread[0] = CreateThread(NULL,0,capture_packets,NULL,0,&threadId[0]) ;
-    hThread[1] = CreateThread(NULL,0,moniter,NULL,0,&threadId[1]) ;
+    cJSON *json = get_json();
+    char *adapter = get_network_adapter(json);
+    printf("%s\n",adapter);
+    DWORD threadId[1];
+    HANDLE hThread[1];
+    hThread[0] = CreateThread(NULL,0,capture_packets,adapter,0,&threadId[0]) ;
+/*    hThread[1] = CreateThread(NULL,0,moniter,NULL,0,&threadId[1]) ;
     hThread[2] = CreateThread(NULL, 0, TCP_table_thread, NULL, 0, &threadId[2]);
     hThread[3] = CreateThread(NULL, 0, UDP_table_thread, NULL, 0, &threadId[3]);
     hThread[4] = CreateThread(NULL, 0, Process_monitor_thread,NULL, 0, &threadId[4]);
-    hThread[5] = CreateThread(NULL, 0, registry_monitor_thread, NULL, 0, &threadId[5]);
-    for(int i=0;i<5;i++){
+    hThread[5] = CreateThread(NULL, 0, registry_monitor_thread, NULL, 0, &threadId[5]); */
+    for(int i=0;i<1;i++){
         if(hThread[i] == NULL){
             fprintf(stderr,"CreateThread Failed. Error: %lu\n",GetLastError());
             return 1;
         }
     }
 
-    WaitForMultipleObjects(2,hThread,FALSE,INFINITE);
-    for(int i=0;i<5;i++)
+    WaitForMultipleObjects(1,hThread,FALSE,INFINITE);
+    for(int i=0;i<1;i++)
         CloseHandle(hThread[i]);
-    return 1;
+    return 1; 
+
 }
