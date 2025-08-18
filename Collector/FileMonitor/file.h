@@ -16,6 +16,6 @@ typedef struct {
 void print_change_action(DWORD action, const WCHAR* fileName);
 void start_monitoring(DIR_MONITOR *monitor);
 unsigned __stdcall monitor_thread(void *arg);
-DWORD WINAPI moniter(LPVOID lpParam);
+DWORD WINAPI file_monitor_thread(LPVOID lpParam);
 
 #endif //FILE_H

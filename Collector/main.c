@@ -39,26 +39,29 @@ cJSON *get_json(){
 
 int main(){
     cJSON *json = get_json();
+    wchar_t **dir = get_directories(json);
     char *adapter = get_network_adapter(json);
-    printf("%s\n",adapter);
-    DWORD threadId[1];
-    HANDLE hThread[1];
+    REG_PARAM *p = get_keys(json);
+ 
+    DWORD threadId[6];
+    HANDLE hThread[6];
     hThread[0] = CreateThread(NULL,0,capture_packets,adapter,0,&threadId[0]) ;
-/*    hThread[1] = CreateThread(NULL,0,moniter,NULL,0,&threadId[1]) ;
+    hThread[1] = CreateThread(NULL,0,file_monitor_thread,dir,0,&threadId[1]) ;
     hThread[2] = CreateThread(NULL, 0, TCP_table_thread, NULL, 0, &threadId[2]);
     hThread[3] = CreateThread(NULL, 0, UDP_table_thread, NULL, 0, &threadId[3]);
     hThread[4] = CreateThread(NULL, 0, Process_monitor_thread,NULL, 0, &threadId[4]);
-    hThread[5] = CreateThread(NULL, 0, registry_monitor_thread, NULL, 0, &threadId[5]); */
-    for(int i=0;i<1;i++){
+    hThread[5] = CreateThread(NULL, 0, registry_monitor_thread, p, 0, &threadId[5]); 
+    for(int i=0;i<6;i++){
         if(hThread[i] == NULL){
             fprintf(stderr,"CreateThread Failed. Error: %lu\n",GetLastError());
             return 1;
         }
     }
 
-    WaitForMultipleObjects(1,hThread,FALSE,INFINITE);
-    for(int i=0;i<1;i++)
+    WaitForMultipleObjects(6,hThread,FALSE,INFINITE);
+    for(int i=0;i<6;i++)
         CloseHandle(hThread[i]);
+    
     return 1; 
 
 }

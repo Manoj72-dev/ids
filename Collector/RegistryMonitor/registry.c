@@ -113,25 +113,11 @@ void snapshot(REG_MONITOR *reg) {
 }
 
 DWORD WINAPI registry_monitor_thread(LPVOID param) {
-    REG_MONITOR monitors[] = {
-        { HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Run" },
-        { HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce" },
-        { HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon" },
-        { HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run" },
-        { HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce" },
-        { HKEY_LOCAL_MACHINE, L"SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Run" },
-        { HKEY_LOCAL_MACHINE, L"SYSTEM\\CurrentControlSet\\Services" },
-        { HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon" },
-        { HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions" },
-        { HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Browser Helper Objects" },
-        { HKEY_LOCAL_MACHINE, L"SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\Interfaces" },
-        { HKEY_LOCAL_MACHINE, L"SYSTEM\\CurrentControlSet\\Services\\SharedAccess\\Parameters\\FirewallPolicy" },
-        { HKEY_LOCAL_MACHINE, L"SOFTWARE\\Policies\\Microsoft\\Windows Defender" },
-        { HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options" }
-    };
-    const int regCount = sizeof(monitors) / sizeof(monitors[0]);
+    REG_PARAM *p = (REG_PARAM *)param;
+    REG_MONITOR *monitors = p->monitors;
+    int regCount = p->count;
 
-    HANDLE eventList[regCount];
+    HANDLE *eventList = malloc(sizeof(HANDLE) * regCount);
     for (int i = 0; i < regCount; i++) {
         LONG res = RegOpenKeyExW(
             monitors[i].rootKey,
@@ -169,5 +155,9 @@ DWORD WINAPI registry_monitor_thread(LPVOID param) {
     for (int i = 0; i < regCount; i++) {
         if (monitors[i].handle) RegCloseKey(monitors[i].handle);
         if (monitors[i].event) CloseHandle(monitors[i].event);
+        free(monitors[i].subkey);
     }
+    free(monitors);
+    free(eventList);
+    free(p);
 }

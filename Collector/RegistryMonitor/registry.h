@@ -5,7 +5,7 @@
 
 typedef struct {
     HKEY rootKey;
-    const wchar_t *subkey;
+    wchar_t *subkey;
     HKEY handle;
     HANDLE event;
     struct {
@@ -16,6 +16,11 @@ typedef struct {
     }values[50];
     DWORD valueCount;
 } REG_MONITOR;
+
+typedef struct {
+    REG_MONITOR *monitors;
+    int count;
+} REG_PARAM;
 
 const char* hkey_to_string(HKEY hKey);
 const char* reg_type_to_string(DWORD type);

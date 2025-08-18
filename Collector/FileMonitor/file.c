@@ -92,16 +92,10 @@ unsigned __stdcall monitor_thread(void *arg) {
     return 0;
 }
 
-DWORD WINAPI moniter(LPVOID lpParam){
-    const wchar_t* directories[] = {
-        L"C:\\Windows\\System32",
-        L"C:\\Windows\\System32\\drivers",
-        L"C:\\Windows\\Temp",
-        L"C:\\Users\\manoj\\Documents"
-    };
-    const int dirCount = sizeof(directories) / sizeof(directories[0]);
-
-    for (int i = 0; i < dirCount; i++) {
+DWORD WINAPI file_monitor_thread(LPVOID lpParam){
+    wchar_t **directories = (wchar_t **)lpParam;
+    
+    for (int i = 0; directories[i] !=NULL; i++) {
         DIR_MONITOR *monitor = (DIR_MONITOR *)malloc(sizeof(DIR_MONITOR));
         ZeroMemory(monitor, sizeof(DIR_MONITOR));
 
