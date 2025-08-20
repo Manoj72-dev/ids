@@ -5,6 +5,7 @@
 #include <sddl.h>
 
 #include "process.h"
+#include "../Common/global.h"
 
 int GetProcessUser(DWORD pid, char *userName, DWORD userNameSize) {
 

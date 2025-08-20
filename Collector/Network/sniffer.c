@@ -7,6 +7,7 @@
 #include<stdlib.h>
 
 #include "sniffer.h"
+#include "../Common/global.h"
 
 void parse_udp_header(char *packet_info, int offset, const u_char *packet) {
     struct udp_header *udp = (struct udp_header *)(packet + offset);
@@ -123,7 +124,12 @@ void packet_handler(const struct pcap_pkthdr *header, const u_char *pkt_data){
     else if(type == 0x86DD){
         parse_ip6_header(packet_info, offset,pkt_data);
     }
-    printf("%s\n", packet_info);
+    DWORD written;
+    BOOL ok = WriteFile(hPipeNet, packet_info, strlen(packet_info), &written, NULL);
+    if(!ok){
+        const char *errMsg = "Failed to write sniffer log\n";
+        WriteFile(hPipeErr, errMsg, strlen(errMsg), &written, NULL);
+    }
 }
 
 

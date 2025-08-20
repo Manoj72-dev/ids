@@ -5,6 +5,7 @@
 #include "RegistryMonitor/registry.h"
 #include "Third_party/cjson.h"
 #include "config.h"
+#include "Common/global.h"
 
 #include <windows.h>
 #include <stdio.h>
@@ -38,6 +39,55 @@ cJSON *get_json(){
 
 
 int main(){
+
+    hPipeNet = CreateNamedPipe(
+        "\\\\.\\pipe\\IDS_Network",
+        PIPE_ACCESS_OUTBOUND,
+        PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT,
+        PIPE_UNLIMITED_INSTANCES,
+        65536,   
+        4096,    
+        0,
+        NULL
+    );
+
+    hPipeMon = CreateNamedPipe(
+        "\\\\.\\pipe\\IDS_Monitor",
+        PIPE_ACCESS_OUTBOUND,
+        PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT,
+        PIPE_UNLIMITED_INSTANCES,
+        16384,
+        4096,
+        0,
+        NULL
+    );
+
+    hPipeErr = CreateNamedPipe(
+        "\\\\.\\pipe\\IDS_Error",
+        PIPE_ACCESS_OUTBOUND,
+        PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT,
+        PIPE_UNLIMITED_INSTANCES,
+        4096,
+        4096,
+        0,
+        NULL
+    );
+
+     if (hPipeNet == INVALID_HANDLE_VALUE ||
+        hPipeMon == INVALID_HANDLE_VALUE ||
+        hPipeErr == INVALID_HANDLE_VALUE) {
+        fprintf(stderr, "Failed to create named pipes. Error: %lu\n", GetLastError());
+        return 1;
+    }
+
+    printf("[+] Named pipes created. Waiting for client connections...\n");
+
+    ConnectNamedPipe(hPipeNet, NULL);
+    ConnectNamedPipe(hPipeMon, NULL);
+    ConnectNamedPipe(hPipeErr, NULL);
+
+    printf("[+] Clients connected to named pipes.\n");
+
     cJSON *json = get_json();
     wchar_t **dir = get_directories(json);
     char *adapter = get_network_adapter(json);

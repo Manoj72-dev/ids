@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 #include "file.h"
+#include "../Common/global.h"
 
 void print_change_action(DWORD action, const WCHAR* fileName) {
     switch (action) {

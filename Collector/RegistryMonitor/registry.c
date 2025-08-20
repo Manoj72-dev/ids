@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include "registry.h"
+#include "../Common/global.h"
 
 const char* hkey_to_string(HKEY hKey) {
     if (hKey == HKEY_CLASSES_ROOT)   return "HKEY_CLASSES_ROOT";

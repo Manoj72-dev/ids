@@ -7,6 +7,7 @@
 #include <tchar.h>
 
 #include "state.h"
+#include "../Common/global.h"
 
 char *GetState(DWORD par) {
     switch ((int)par) {
