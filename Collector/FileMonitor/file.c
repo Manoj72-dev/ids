@@ -5,8 +5,9 @@
 
 #include "file.h"
 #include "../Common/global.h"
+#include "../Third_party/cjson.h"
 
-void print_change_action(DWORD action, const WCHAR* fileName) {
+void print_change_action(DWORD action, const WCHAR* fileName, char *msg) {
     switch (action) {
         case FILE_ACTION_ADDED:
             wprintf(L"Added: %ls\n", fileName);
@@ -64,23 +65,25 @@ unsigned __stdcall monitor_thread(void *arg) {
 
                 do {
                     fni = (FILE_NOTIFY_INFORMATION *)ptr;
-
+                    char msg[524];
                     WCHAR fileName[MAX_PATH];
                     wcsncpy_s(fileName, MAX_PATH, fni->FileName, fni->FileNameLength / sizeof(WCHAR));
                     fileName[fni->FileNameLength / sizeof(WCHAR)] = L'\0';
 
-                    wprintf(L"[Thread %u] Path: %ls ", GetCurrentThreadId(), monitor->directoryPath);
-                    print_change_action(fni->Action, fileName);
+                    snprintf(msg,"[Thread %u] Path: %ls ", GetCurrentThreadId(), monitor->directoryPath);
+                    print_change_action(fni->Action, fileName, msg);
 
                     if (fni->NextEntryOffset == 0) break;
                     ptr += fni->NextEntryOffset;
                 } while (TRUE);
             } else {
-                wprintf(L"GetOverlappedResult failed. Error: %lu\n", GetLastError());
+                send_error(hPipeErr,"GetOverlappedResult failed.", GetLastError());
                 break;
             }
         } else {
-            wprintf(L"Wait error in thread %u. Error: %lu\n", GetCurrentThreadId(), GetLastError());
+            char err[214];
+            snprintf(err,strlen(err),"Wait error in thread %u.", GetCurrentThreadId());
+            send_error(hPipeErr, err, GetLastError());
             break;
         }
     }
@@ -111,7 +114,9 @@ DWORD WINAPI file_monitor_thread(LPVOID lpParam){
         );
 
         if (monitor->dirHandle == INVALID_HANDLE_VALUE) {
-            wprintf(L"Failed to open directory %ls. Error: %lu\n", directories[i], GetLastError());
+            char err[514];
+            snprintf(err,"Failed to open directory %ls.", directories[i]);
+            send_error(hPipeErr,err,GetLastError());
             free(monitor);
             continue;
         }

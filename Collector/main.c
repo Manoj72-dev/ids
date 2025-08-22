@@ -37,19 +37,9 @@ cJSON *get_json(){
     return json;
 }
 
-
 int main(){
-
-    hPipeNet = CreateNamedPipe(
-        "\\\\.\\pipe\\IDS_Network",
-        PIPE_ACCESS_OUTBOUND,
-        PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT,
-        PIPE_UNLIMITED_INSTANCES,
-        65536,   
-        4096,    
-        0,
-        NULL
-    );
+    InitializeCriticalSection(&gPipeLock);
+    
 
     hPipeMon = CreateNamedPipe(
         "\\\\.\\pipe\\IDS_Monitor",
@@ -73,7 +63,7 @@ int main(){
         NULL
     );
 
-     if (hPipeNet == INVALID_HANDLE_VALUE ||
+     if (
         hPipeMon == INVALID_HANDLE_VALUE ||
         hPipeErr == INVALID_HANDLE_VALUE) {
         fprintf(stderr, "Failed to create named pipes. Error: %lu\n", GetLastError());
@@ -82,7 +72,7 @@ int main(){
 
     printf("[+] Named pipes created. Waiting for client connections...\n");
 
-    ConnectNamedPipe(hPipeNet, NULL);
+   
     ConnectNamedPipe(hPipeMon, NULL);
     ConnectNamedPipe(hPipeErr, NULL);
 
@@ -93,25 +83,26 @@ int main(){
     char *adapter = get_network_adapter(json);
     REG_PARAM *p = get_keys(json);
  
-    DWORD threadId[6];
-    HANDLE hThread[6];
-    hThread[0] = CreateThread(NULL,0,capture_packets,adapter,0,&threadId[0]) ;
-    hThread[1] = CreateThread(NULL,0,file_monitor_thread,dir,0,&threadId[1]) ;
-    hThread[2] = CreateThread(NULL, 0, TCP_table_thread, NULL, 0, &threadId[2]);
-    hThread[3] = CreateThread(NULL, 0, UDP_table_thread, NULL, 0, &threadId[3]);
-    hThread[4] = CreateThread(NULL, 0, Process_monitor_thread,NULL, 0, &threadId[4]);
-    hThread[5] = CreateThread(NULL, 0, registry_monitor_thread, p, 0, &threadId[5]); 
-    for(int i=0;i<6;i++){
+    DWORD threadId[0];
+    HANDLE hThread[0];
+   // hThread[0] = CreateThread(NULL,0,capture_packets,adapter,0,&threadId[0]) ;
+    //hThread[1] = CreateThread(NULL,0,file_monitor_thread,dir,0,&threadId[1]) ;
+    //hThread[2] = CreateThread(NULL, 0, TCP_table_thread, NULL, 0, &threadId[2]);
+    //hThread[3] = CreateThread(NULL, 0, UDP_table_thread, NULL, 0, &threadId[3]);
+    hThread[0] = CreateThread(NULL, 0, Process_monitor_thread,NULL, 0, &threadId[4]);
+    //hThread[5] = CreateThread(NULL, 0, registry_monitor_thread, p, 0, &threadId[5]); 
+    for(int i=0;i<1;i++){
         if(hThread[i] == NULL){
             fprintf(stderr,"CreateThread Failed. Error: %lu\n",GetLastError());
             return 1;
         }
     }
 
-    WaitForMultipleObjects(6,hThread,FALSE,INFINITE);
-    for(int i=0;i<6;i++)
+    WaitForMultipleObjects(1,hThread,FALSE,INFINITE);
+    for(int i=0;i<1;i++)
         CloseHandle(hThread[i]);
-    
+    DeleteCriticalSection(&gPipeLock);
+    printf("...\n");
     return 1; 
 
 }

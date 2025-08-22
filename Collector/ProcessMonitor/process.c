@@ -3,9 +3,11 @@
 #include <tlhelp32.h>
 #include <stdlib.h>
 #include <sddl.h>
+#include <time.h>
 
 #include "process.h"
 #include "../Common/global.h"
+#include "../Third_party/cjson.h"
 
 int GetProcessUser(DWORD pid, char *userName, DWORD userNameSize) {
 
@@ -67,19 +69,26 @@ char *GetProcessPath(DWORD pid){
 }
 
 void LogProcessInfo(DWORD pid, const char *exe, DWORD parent, const char *path, const char *user) {
-    printf("PID: %lu  Name: %s  ParentID: %lu  Path: %s  User: %s\n",
-           pid, exe, parent, path, user);
-
+     cJSON *obj = cJSON_CreateObject();
+    cJSON_AddStringToObject(obj, "Type", "Process");
+    cJSON_AddNumberToObject(obj, "PID", pid);
+    cJSON_AddStringToObject(obj, "Name", exe);
+    cJSON_AddNumberToObject(obj, "PPID", parent);
+    cJSON_AddStringToObject(obj, "Path", path ? path : "");
+    cJSON_AddStringToObject(obj, "User", user ? user : "");
+    cJSON_AddNumberToObject(obj, "ts", (double)time(NULL)); 
+    send_json(hPipeMon, obj);
 }
 
 void EnumerateProcesses(){
     HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS,0);
     if(hSnapshot == INVALID_HANDLE_VALUE){
-        printf("Snapshot Fail\n");
+        char *msg = "Failed to take snapshot.";
+        send_error(hPipeErr,msg,GetLastError());
         return;
     }
     PROCESSENTRY32 pe32;
-        pe32.dwSize = sizeof(PROCESSENTRY32);
+    pe32.dwSize = sizeof(PROCESSENTRY32);
 
     if (Process32First(hSnapshot, &pe32)) {
         do {
@@ -90,7 +99,7 @@ void EnumerateProcesses(){
             free(Ppath);
         } while (Process32Next(hSnapshot, &pe32));
     } else {
-        printf("Process32First failed.\n");
+        send_error(hPipeErr, "Process32First failed", GetLastError());
     }
     CloseHandle(hSnapshot);
 }

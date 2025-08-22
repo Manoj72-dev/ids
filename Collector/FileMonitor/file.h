@@ -13,7 +13,7 @@ typedef struct {
     OVERLAPPED overlapped;
 } DIR_MONITOR;
 
-void print_change_action(DWORD action, const WCHAR* fileName);
+void print_change_action(DWORD action, const WCHAR* fileName, char *msg);
 void start_monitoring(DIR_MONITOR *monitor);
 unsigned __stdcall monitor_thread(void *arg);
 DWORD WINAPI file_monitor_thread(LPVOID lpParam);
