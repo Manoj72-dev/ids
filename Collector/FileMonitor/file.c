@@ -7,25 +7,30 @@
 #include "../Common/global.h"
 #include "../Third_party/cjson.h"
 
-void print_change_action(DWORD action, const WCHAR* fileName, char *msg) {
+char* wchar_to_char(const WCHAR* wstr) {
+    if (!wstr) return NULL;
+
+    int size_needed = WideCharToMultiByte(CP_UTF8, 0, wstr, -1, NULL, 0, NULL, NULL);
+    char *str = (char*)malloc(size_needed);
+    if (!str) return NULL;
+
+    WideCharToMultiByte(CP_UTF8, 0, wstr, -1, str, size_needed, NULL, NULL);
+    return str;
+}
+char *get_action(DWORD action) {
     switch (action) {
         case FILE_ACTION_ADDED:
-            wprintf(L"Added: %ls\n", fileName);
-            break;
+            return "Added";
         case FILE_ACTION_REMOVED:
-            wprintf(L"Removed: %ls\n", fileName);
-            break;
+            return "Removed";
         case FILE_ACTION_MODIFIED:
-            wprintf(L"Modified: %ls\n", fileName);
-            break;
+           return "Modefied";
         case FILE_ACTION_RENAMED_OLD_NAME:
-            wprintf(L"Renamed From: %ls\n", fileName);
-            break;
+            return "Renamed From";
         case FILE_ACTION_RENAMED_NEW_NAME:
-            wprintf(L"Renamed To: %ls\n", fileName);
-            break;
+            return "Renamed To";
         default:
-            wprintf(L"Unknown action: %d on %ls\n", action, fileName);
+            return "Unknown Action";
     }
 }
 
@@ -44,7 +49,12 @@ void start_monitoring(DIR_MONITOR *monitor) {
         NULL
     );
     if (!success) {
-        wprintf(L"Failed to start monitoring %ls. Error: %lu\n", monitor->directoryPath, GetLastError());
+        char err[514];
+        char dir_name[256];
+        wcstombs(dir_name, monitor->directoryPath, sizeof(dir_name));
+        dir_name[sizeof(dir_name)-1] = '\0';
+        snprintf(err,sizeof(err),"Failed to start monitoring %s.", monitor->directoryPath);
+        send_error(hPipeErr, err, GetLastError());
     }
 }
 
@@ -65,14 +75,14 @@ unsigned __stdcall monitor_thread(void *arg) {
 
                 do {
                     fni = (FILE_NOTIFY_INFORMATION *)ptr;
-                    char msg[524];
-                    WCHAR fileName[MAX_PATH];
-                    wcsncpy_s(fileName, MAX_PATH, fni->FileName, fni->FileNameLength / sizeof(WCHAR));
-                    fileName[fni->FileNameLength / sizeof(WCHAR)] = L'\0';
-
-                    snprintf(msg,"[Thread %u] Path: %ls ", GetCurrentThreadId(), monitor->directoryPath);
-                    print_change_action(fni->Action, fileName, msg);
-
+                    char *path = wchar_to_char(monitor->directoryPath);
+                    char *filename = wchar_to_char(fni->FileName);
+                    cJSON *msg = cJSON_CreateObject();
+                    cJSON_AddStringToObject(msg,"Type", "File");
+                    cJSON_AddStringToObject(msg,"Path", path);
+                    cJSON_AddStringToObject(msg,"FileName",filename);
+                    cJSON_AddStringToObject(msg,"Action",get_action(fni->Action));
+                    send_json(hPipeMon, msg);
                     if (fni->NextEntryOffset == 0) break;
                     ptr += fni->NextEntryOffset;
                 } while (TRUE);
@@ -82,7 +92,7 @@ unsigned __stdcall monitor_thread(void *arg) {
             }
         } else {
             char err[214];
-            snprintf(err,strlen(err),"Wait error in thread %u.", GetCurrentThreadId());
+            snprintf(err,sizeof(err),"Wait error in thread %u.", GetCurrentThreadId());
             send_error(hPipeErr, err, GetLastError());
             break;
         }
@@ -115,8 +125,13 @@ DWORD WINAPI file_monitor_thread(LPVOID lpParam){
 
         if (monitor->dirHandle == INVALID_HANDLE_VALUE) {
             char err[514];
-            snprintf(err,"Failed to open directory %ls.", directories[i]);
-            send_error(hPipeErr,err,GetLastError());
+            char dir_name[256];
+            wcstombs(dir_name, directories[i], sizeof(dir_name));
+            dir_name[sizeof(dir_name)-1] = '\0';
+
+            snprintf(err, sizeof(err), "Failed to open directory %s.", dir_name);
+
+            send_error(hPipeErr, err, GetLastError());
             free(monitor);
             continue;
         }
