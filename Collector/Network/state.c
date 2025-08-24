@@ -5,12 +5,18 @@
 #include <stdio.h>
 #include <psapi.h>
 #include <tchar.h>
+#include <time.h>
 
 #include "state.h"
 #include "../Common/global.h"
+#include "../Third_party/cjson.h"
 
-char *GetState(DWORD par) {
-    switch ((int)par) {
+#pragma comment(lib, "iphlpapi.lib")
+#pragma comment(lib, "ws2_32.lib")
+
+
+static const char *GetStateStr(DWORD s) {
+    switch ((int)s) {
         case 1:  return "CLOSED";
         case 2:  return "LISTEN";
         case 3:  return "SYN-SENT";
@@ -27,7 +33,7 @@ char *GetState(DWORD par) {
     }
 }
 
-char *GetProcessName(DWORD pid) {
+static char *GetProcessNameBase(DWORD pid) {
     if (pid == 4) return _strdup("System");
 
     HANDLE hProcess = OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, FALSE, pid);
@@ -35,7 +41,6 @@ char *GetProcessName(DWORD pid) {
 
     char fullPath[MAX_PATH];
     DWORD size = MAX_PATH;
-
     if (!QueryFullProcessImageNameA(hProcess, 0, fullPath, &size)) {
         CloseHandle(hProcess);
         return _strdup("Unknown");
@@ -49,128 +54,226 @@ char *GetProcessName(DWORD pid) {
     return _strdup(baseName);
 }
 
+static void send_tcp_json_v4(const char *localIP, USHORT lport,
+                             const char *remoteIP, USHORT rport,
+                             DWORD pid, const char *procName, DWORD state)
+{
+    cJSON *obj = cJSON_CreateObject();
+    cJSON_AddStringToObject(obj, "Type", "State");
+    cJSON_AddStringToObject(obj, "Protocol", "TCP");
+    cJSON_AddStringToObject(obj, "Version", "IPv4");
+    cJSON_AddStringToObject(obj, "LocalIP", localIP);
+    cJSON_AddNumberToObject(obj, "LocalPort", (int)lport);
+    cJSON_AddStringToObject(obj, "RemoteIP", remoteIP);
+    cJSON_AddNumberToObject(obj, "RemotePort", (int)rport);
+    cJSON_AddStringToObject(obj, "State", GetStateStr(state));
+    cJSON_AddNumberToObject(obj, "PID", (double)pid);
+    cJSON_AddStringToObject(obj, "Process", procName ? procName : "Unknown");
+    cJSON_AddNumberToObject(obj, "ts", (double)time(NULL));
+    send_json(hPipeMon, obj);
+}
 
-void TCP_snapshot() {
-    PMIB_TCPTABLE_OWNER_PID tcpTable = NULL;
-    PMIB_TCP6TABLE_OWNER_PID v6tcpTable = NULL;
-    DWORD tcpsize = 0, v6tcpsize = 0;
+static void send_tcp_json_v6(const char *localIP, USHORT lport,
+                             const char *remoteIP, USHORT rport,
+                             DWORD pid, const char *procName, DWORD state)
+{
+    cJSON *obj = cJSON_CreateObject();
+    cJSON_AddStringToObject(obj, "Type", "State");
+    cJSON_AddStringToObject(obj, "Protocol", "TCP");
+    cJSON_AddStringToObject(obj, "Version", "IPv6");
+    cJSON_AddStringToObject(obj, "LocalIP", localIP);
+    cJSON_AddNumberToObject(obj, "LocalPort", (int)lport);
+    cJSON_AddStringToObject(obj, "RemoteIP", remoteIP);
+    cJSON_AddNumberToObject(obj, "RemotePort", (int)rport);
+    cJSON_AddStringToObject(obj, "State", GetStateStr(state));
+    cJSON_AddNumberToObject(obj, "PID", (double)pid);
+    cJSON_AddStringToObject(obj, "Process", procName ? procName : "Unknown");
+    cJSON_AddNumberToObject(obj, "ts", (double)time(NULL));
+    send_json(hPipeMon, obj);
+}
 
-    if (GetExtendedTcpTable(NULL, &tcpsize, TRUE, AF_INET, TCP_TABLE_OWNER_PID_ALL, 0) != ERROR_INSUFFICIENT_BUFFER) return;
-    if (GetExtendedTcpTable(NULL, &v6tcpsize, TRUE, AF_INET6, TCP_TABLE_OWNER_PID_ALL, 0) != ERROR_INSUFFICIENT_BUFFER) return;
+static void send_udp_json_v4(const char *localIP, USHORT lport,
+                             DWORD pid, const char *procName)
+{
+    cJSON *obj = cJSON_CreateObject();
+    cJSON_AddStringToObject(obj, "Type", "State");
+    cJSON_AddStringToObject(obj, "Protocol", "UDP");
+    cJSON_AddStringToObject(obj, "Version", "IPv4");
+    cJSON_AddStringToObject(obj, "LocalIP", localIP);
+    cJSON_AddNumberToObject(obj, "LocalPort", (int)lport);
+    cJSON_AddNumberToObject(obj, "PID", (double)pid);
+    cJSON_AddStringToObject(obj, "Process", procName ? procName : "Unknown");
+    cJSON_AddNumberToObject(obj, "ts", (double)time(NULL));
+    send_json(hPipeMon, obj);
+}
 
-    tcpTable = (PMIB_TCPTABLE_OWNER_PID)malloc(tcpsize);
-    v6tcpTable = (PMIB_TCP6TABLE_OWNER_PID)malloc(v6tcpsize);
+static void send_udp_json_v6(const char *localIP, USHORT lport, DWORD scopeId,
+                             DWORD pid, const char *procName)
+{
+    cJSON *obj = cJSON_CreateObject();
+    cJSON_AddStringToObject(obj, "Type", "State");
+    cJSON_AddStringToObject(obj, "Protocol", "UDP");
+    cJSON_AddStringToObject(obj, "Version", "IPv6");
+    cJSON_AddStringToObject(obj, "LocalIP", localIP);
+    cJSON_AddNumberToObject(obj, "LocalPort", (int)lport);
+    cJSON_AddNumberToObject(obj, "ScopeId", (double)scopeId);
+    cJSON_AddNumberToObject(obj, "PID", (double)pid);
+    cJSON_AddStringToObject(obj, "Process", procName ? procName : "Unknown");
+    cJSON_AddNumberToObject(obj, "ts", (double)time(NULL));
+    send_json(hPipeMon, obj);
+}
 
-    if (!tcpTable || !v6tcpTable) goto cleanup;
+static void TCP_snapshot(void) {
+    PMIB_TCPTABLE_OWNER_PID  t4 = NULL;
+    PMIB_TCP6TABLE_OWNER_PID t6 = NULL;
+    DWORD sz4 = 0, sz6 = 0;
 
-    if (GetExtendedTcpTable(tcpTable, &tcpsize, TRUE, AF_INET, TCP_TABLE_OWNER_PID_ALL, 0) == NO_ERROR) {
-        for (DWORD i = 0; i < tcpTable->dwNumEntries; i++) {
-            struct in_addr localAddr = { tcpTable->table[i].dwLocalAddr };
-            struct in_addr remoteAddr = { tcpTable->table[i].dwRemoteAddr };
-            char *procName = GetProcessName(tcpTable->table[i].dwOwningPid);
-
-            printf("[TCPv4] Local: %s:%u  Remote: %s:%u  PID: %lu  Process: %s  State: %s\n",
-                   inet_ntoa(localAddr),
-                   ntohs((u_short)tcpTable->table[i].dwLocalPort),
-                   inet_ntoa(remoteAddr),
-                   ntohs((u_short)tcpTable->table[i].dwRemotePort),
-                   (unsigned long)tcpTable->table[i].dwOwningPid,
-                   procName,
-                   GetState(tcpTable->table[i].dwState));
-
-            free(procName);
-        }
+    if (GetExtendedTcpTable(NULL, &sz4, TRUE, AF_INET,  TCP_TABLE_OWNER_PID_ALL, 0) != ERROR_INSUFFICIENT_BUFFER) {
+        send_error(hPipeErr, "GetExtendedTcpTable preflight v4 failed", GetLastError());
+        return;
+    }
+    if (GetExtendedTcpTable(NULL, &sz6, TRUE, AF_INET6, TCP_TABLE_OWNER_PID_ALL, 0) != ERROR_INSUFFICIENT_BUFFER) {
+        send_error(hPipeErr, "GetExtendedTcpTable preflight v6 failed", GetLastError());
+        return;
     }
 
-    if (GetExtendedTcpTable(v6tcpTable, &v6tcpsize, TRUE, AF_INET6, TCP_TABLE_OWNER_PID_ALL, 0) == NO_ERROR) {
-        for (DWORD i = 0; i < v6tcpTable->dwNumEntries; i++) {
-            char localaddr[INET6_ADDRSTRLEN], remoteaddr[INET6_ADDRSTRLEN];
-            inet_ntop(AF_INET6, &(v6tcpTable->table[i].ucLocalAddr), localaddr, INET6_ADDRSTRLEN);
-            inet_ntop(AF_INET6, &(v6tcpTable->table[i].ucRemoteAddr), remoteaddr, INET6_ADDRSTRLEN);
+    t4 = (PMIB_TCPTABLE_OWNER_PID)malloc(sz4);
+    t6 = (PMIB_TCP6TABLE_OWNER_PID)malloc(sz6);
+    if (!t4 || !t6) {
+        send_error(hPipeErr, "TCP table alloc failed", ERROR_NOT_ENOUGH_MEMORY);
+        goto cleanup;
+    }
 
-            char *procName = GetProcessName(v6tcpTable->table[i].dwOwningPid);
+    if (GetExtendedTcpTable(t4, &sz4, TRUE, AF_INET, TCP_TABLE_OWNER_PID_ALL, 0) == NO_ERROR) {
+        for (DWORD i = 0; i < t4->dwNumEntries; i++) {
+            struct in_addr la = { t4->table[i].dwLocalAddr };
+            struct in_addr ra = { t4->table[i].dwRemoteAddr };
+            char *proc = GetProcessNameBase(t4->table[i].dwOwningPid);
 
-            printf("[TCPv6] Local: %s:%u  Remote: %s:%u  PID: %u  Process: %s  State: %s\n",
-                   localaddr,
-                   ntohs((u_short)v6tcpTable->table[i].dwLocalPort),
-                   remoteaddr,
-                   ntohs((u_short)v6tcpTable->table[i].dwRemotePort),
-                   v6tcpTable->table[i].dwOwningPid,
-                   procName,
-                   GetState(v6tcpTable->table[i].dwState));
+            send_tcp_json_v4(
+                inet_ntoa(la),
+                ntohs((u_short)t4->table[i].dwLocalPort),
+                inet_ntoa(ra),
+                ntohs((u_short)t4->table[i].dwRemotePort),
+                t4->table[i].dwOwningPid,
+                proc,
+                t4->table[i].dwState
+            );
 
-            free(procName);
+            free(proc);
         }
+    } else {
+        send_error(hPipeErr, "GetExtendedTcpTable v4 failed", GetLastError());
+    }
+
+    if (GetExtendedTcpTable(t6, &sz6, TRUE, AF_INET6, TCP_TABLE_OWNER_PID_ALL, 0) == NO_ERROR) {
+        for (DWORD i = 0; i < t6->dwNumEntries; i++) {
+            char localbuf[INET6_ADDRSTRLEN], remotebuf[INET6_ADDRSTRLEN];
+            inet_ntop(AF_INET6, &(t6->table[i].ucLocalAddr),  localbuf,  sizeof(localbuf));
+            inet_ntop(AF_INET6, &(t6->table[i].ucRemoteAddr), remotebuf, sizeof(remotebuf));
+
+            char *proc = GetProcessNameBase(t6->table[i].dwOwningPid);
+
+            send_tcp_json_v6(
+                localbuf,
+                ntohs((u_short)t6->table[i].dwLocalPort),
+                remotebuf,
+                ntohs((u_short)t6->table[i].dwRemotePort),
+                t6->table[i].dwOwningPid,
+                proc,
+                t6->table[i].dwState
+            );
+
+            free(proc);
+        }
+    } else {
+        send_error(hPipeErr, "GetExtendedTcpTable v6 failed", GetLastError());
     }
 
 cleanup:
-    if (tcpTable) free(tcpTable);
-    if (v6tcpTable) free(v6tcpTable);
+    if (t4) free(t4);
+    if (t6) free(t6);
 }
 
-void UDP_snapshot() {
-    PMIB_UDPTABLE_OWNER_PID v4table = NULL;
-    PMIB_UDP6TABLE_OWNER_PID v6table = NULL;
-    DWORD v4size = 0, v6size = 0;
+static void UDP_snapshot(void) {
+    PMIB_UDPTABLE_OWNER_PID  u4 = NULL;
+    PMIB_UDP6TABLE_OWNER_PID u6 = NULL;
+    DWORD sz4 = 0, sz6 = 0;
 
-    if (GetExtendedUdpTable(NULL, &v4size, TRUE, AF_INET, UDP_TABLE_OWNER_PID, 0) != ERROR_INSUFFICIENT_BUFFER) return;
-    if (GetExtendedUdpTable(NULL, &v6size, TRUE, AF_INET6, UDP_TABLE_OWNER_PID, 0) != ERROR_INSUFFICIENT_BUFFER) return;
-
-    v4table = (PMIB_UDPTABLE_OWNER_PID)malloc(v4size);
-    v6table = (PMIB_UDP6TABLE_OWNER_PID)malloc(v6size);
-
-    if (!v4table || !v6table) goto cleanup;
-
-    if (GetExtendedUdpTable(v4table, &v4size, TRUE, AF_INET, UDP_TABLE_OWNER_PID, 0) == NO_ERROR) {
-        for (DWORD i = 0; i < v4table->dwNumEntries; i++) {
-            struct in_addr localAddr = { v4table->table[i].dwLocalAddr };
-            char *procName = GetProcessName(v4table->table[i].dwOwningPid);
-
-            printf("[UDPv4] Local: %s:%u  PID: %u  Process: %s\n",
-                   inet_ntoa(localAddr),
-                   ntohs((u_short)v4table->table[i].dwLocalPort),
-                   v4table->table[i].dwOwningPid,
-                   procName);
-
-            free(procName);
-        }
+    if (GetExtendedUdpTable(NULL, &sz4, TRUE, AF_INET,  UDP_TABLE_OWNER_PID, 0) != ERROR_INSUFFICIENT_BUFFER) {
+        send_error(hPipeErr, "GetExtendedUdpTable preflight v4 failed", GetLastError());
+        return;
+    }
+    if (GetExtendedUdpTable(NULL, &sz6, TRUE, AF_INET6, UDP_TABLE_OWNER_PID, 0) != ERROR_INSUFFICIENT_BUFFER) {
+        send_error(hPipeErr, "GetExtendedUdpTable preflight v6 failed", GetLastError());
+        return;
     }
 
-    if (GetExtendedUdpTable(v6table, &v6size, TRUE, AF_INET6, UDP_TABLE_OWNER_PID, 0) == NO_ERROR) {
-        for (DWORD i = 0; i < v6table->dwNumEntries; i++) {
-            char localAddr[INET6_ADDRSTRLEN];
-            inet_ntop(AF_INET6, &(v6table->table[i].ucLocalAddr), localAddr, INET6_ADDRSTRLEN);
-            char *procName = GetProcessName(v6table->table[i].dwOwningPid);
+    u4 = (PMIB_UDPTABLE_OWNER_PID)malloc(sz4);
+    u6 = (PMIB_UDP6TABLE_OWNER_PID)malloc(sz6);
+    if (!u4 || !u6) {
+        send_error(hPipeErr, "UDP table alloc failed", ERROR_NOT_ENOUGH_MEMORY);
+        goto cleanup;
+    }
 
-            printf("[UDPv6] Local: %s:%u  ScopeID: %u  PID: %u  Process: %s\n",
-                   localAddr,
-                   ntohs((u_short)v6table->table[i].dwLocalPort),
-                   ntohs((u_short)v6table->table[i].dwLocalScopeId),
-                   v6table->table[i].dwOwningPid,
-                   procName);
+    if (GetExtendedUdpTable(u4, &sz4, TRUE, AF_INET, UDP_TABLE_OWNER_PID, 0) == NO_ERROR) {
+        for (DWORD i = 0; i < u4->dwNumEntries; i++) {
+            struct in_addr la = { u4->table[i].dwLocalAddr };
+            char *proc = GetProcessNameBase(u4->table[i].dwOwningPid);
 
-            free(procName);
+            send_udp_json_v4(
+                inet_ntoa(la),
+                ntohs((u_short)u4->table[i].dwLocalPort),
+                u4->table[i].dwOwningPid,
+                proc
+            );
+
+            free(proc);
         }
+    } else {
+        send_error(hPipeErr, "GetExtendedUdpTable v4 failed", GetLastError());
+    }
+
+    if (GetExtendedUdpTable(u6, &sz6, TRUE, AF_INET6, UDP_TABLE_OWNER_PID, 0) == NO_ERROR) {
+        for (DWORD i = 0; i < u6->dwNumEntries; i++) {
+            char localbuf[INET6_ADDRSTRLEN];
+            inet_ntop(AF_INET6, &(u6->table[i].ucLocalAddr), localbuf, sizeof(localbuf));
+            char *proc = GetProcessNameBase(u6->table[i].dwOwningPid);
+
+            send_udp_json_v6(
+                localbuf,
+                ntohs((u_short)u6->table[i].dwLocalPort),
+                u6->table[i].dwLocalScopeId,
+                u6->table[i].dwOwningPid,
+                proc
+            );
+
+            free(proc);
+        }
+    } else {
+        send_error(hPipeErr, "GetExtendedUdpTable v6 failed", GetLastError());
     }
 
 cleanup:
-    if (v4table) free(v4table);
-    if (v6table) free(v6table);
+    if (u4) free(u4);
+    if (u6) free(u6);
 }
+
 
 DWORD WINAPI TCP_table_thread(LPVOID Param) {
-    while (1) {
+    (void)Param;
+    for (;;) {
         TCP_snapshot();
-        Sleep(5000); 
+        Sleep(5000);
     }
     return 0;
 }
 
 DWORD WINAPI UDP_table_thread(LPVOID Param) {
-    while (1) {
+    (void)Param;
+    for (;;) {
         UDP_snapshot();
         Sleep(2000); 
     }
     return 0;
 }
-

@@ -3,17 +3,21 @@
 
 #include <windows.h>
 
+#define MAX_REG_VALUES 50
+
+typedef struct {
+    wchar_t name[256];
+    DWORD type;
+    BYTE data[1024];
+    DWORD dataSize;
+} REG_VALUE;
+
 typedef struct {
     HKEY rootKey;
     wchar_t *subkey;
     HKEY handle;
     HANDLE event;
-    struct {
-        wchar_t name[256];
-        DWORD type;
-        BYTE data[1024];
-        DWORD dataSize;
-    }values[50];
+    REG_VALUE values[MAX_REG_VALUES];
     DWORD valueCount;
 } REG_MONITOR;
 
@@ -26,6 +30,7 @@ const char* hkey_to_string(HKEY hKey);
 const char* reg_type_to_string(DWORD type);
 void start_reg_monitoring(REG_MONITOR *mon);
 void snapshot(REG_MONITOR *reg);
+void send_registry_json(REG_MONITOR *regMon, REG_VALUE *val);
 DWORD WINAPI registry_monitor_thread(LPVOID param);
 
-#endif //REGISTRY_H
+#endif // REGISTRY_H

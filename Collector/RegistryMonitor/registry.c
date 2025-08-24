@@ -1,8 +1,12 @@
 #include <windows.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
 
 #include "registry.h"
 #include "../Common/global.h"
+#include "../Third_party/cjson.h"
 
 const char* hkey_to_string(HKEY hKey) {
     if (hKey == HKEY_CLASSES_ROOT)   return "HKEY_CLASSES_ROOT";
@@ -25,59 +29,42 @@ const char* reg_type_to_string(DWORD type) {
     }
 }
 
-void log_data(const REG_MONITOR *regMon) {
-    wprintf(L"[KEY]   %hs\\%ls\n",hkey_to_string(regMon->rootKey), regMon->subkey);
-
-    for (DWORD i = 0; i < regMon->valueCount; i++) {
-        wprintf(L"  [VALUE] Name: %ls\t Type: %hs\t Size: %lu\n",
-                regMon->values[i].name[0] ? regMon->values[i].name : L"(Default)",
-                reg_type_to_string(regMon->values[i].type),
-                regMon->values[i].dataSize);
-
-        switch (regMon->values[i].type) {
-            case REG_SZ:
-            case REG_EXPAND_SZ:
-                wprintf(L"          Data: %ls\n", (wchar_t*)regMon->values[i].data);
-                break;
-
-            case REG_DWORD:
-                if (regMon->values[i].dataSize >= sizeof(DWORD)) {
-                    DWORD val = *(DWORD*)regMon->values[i].data;
-                    wprintf(L"          Data: 0x%08X (%u)\n", val, val);
-                }
-                break;
-
-            case REG_QWORD:
-                if (regMon->values[i].dataSize >= sizeof(ULONGLONG)) {
-                    ULONGLONG val = *(ULONGLONG*)regMon->values[i].data;
-                    wprintf(L"          Data: 0x%016llX (%llu)\n", val, val);
-                }
-                break;
-
-            case REG_BINARY:
-            default:
-                wprintf(L"          Data (hex): ");
-                for (DWORD j = 0; j < regMon->values[i].dataSize; j++) {
-                    wprintf(L"%02X ", regMon->values[i].data[j]);
-                    if ((j + 1) % 16 == 0) wprintf(L"\n                     ");
-                }
-                wprintf(L"\n");
-                break;
-        }
-    }
+static void WideToUtf8(const wchar_t *src, char *dst, size_t dstSize) {
+    WideCharToMultiByte(CP_UTF8, 0, src, -1, dst, (int)dstSize, NULL, NULL);
 }
 
-void start_reg_monitoring(REG_MONITOR *mon) {
-    if (RegNotifyChangeKeyValue(
-        mon->handle,
-        TRUE,
-        REG_NOTIFY_CHANGE_NAME | REG_NOTIFY_CHANGE_LAST_SET,
-        mon->event,
-        TRUE) != ERROR_SUCCESS)
-    {
-        wprintf(L"[!] Failed to set registry notification for %ls\n", mon->subkey);
+void send_registry_json(REG_MONITOR *regMon, REG_VALUE *val) {
+    char subKeyUtf8[512], valueNameUtf8[256], dataStr[512];
+
+    WideToUtf8(regMon->subkey, subKeyUtf8, sizeof(subKeyUtf8));
+    WideToUtf8(val->name[0] ? val->name : L"(Default)", valueNameUtf8, sizeof(valueNameUtf8));
+
+    switch (val->type) {
+        case REG_SZ:
+        case REG_EXPAND_SZ:
+            WideToUtf8((wchar_t *)val->data, dataStr, sizeof(dataStr));
+            break;
+        case REG_DWORD:
+            snprintf(dataStr, sizeof(dataStr), "%u", *(DWORD *)val->data);
+            break;
+        case REG_QWORD:
+            snprintf(dataStr, sizeof(dataStr), "%llu", *(unsigned long long *)val->data);
+            break;
+        default:
+            snprintf(dataStr, sizeof(dataStr), "BINARY[%lu bytes]", val->dataSize);
+            break;
     }
-    
+
+    cJSON *obj = cJSON_CreateObject();
+    cJSON_AddStringToObject(obj, "Type", "Registry");
+    cJSON_AddStringToObject(obj, "RootKey", hkey_to_string(regMon->rootKey));
+    cJSON_AddStringToObject(obj, "SubKey", subKeyUtf8);
+    cJSON_AddStringToObject(obj, "ValueName", valueNameUtf8);
+    cJSON_AddStringToObject(obj, "DataType", reg_type_to_string(val->type));
+    cJSON_AddStringToObject(obj, "Data", dataStr);
+    cJSON_AddNumberToObject(obj, "ts", (double)time(NULL));
+
+    send_json(hPipeMon, obj);
 }
 
 void snapshot(REG_MONITOR *reg) {
@@ -90,13 +77,13 @@ void snapshot(REG_MONITOR *reg) {
         DWORD type;
 
         LONG res = RegEnumValueW(
-            reg->handle,  
+            reg->handle,
             index,
             reg->values[index].name,
             &nameSize,
             NULL,
             &type,
-            reg->values[index].data, 
+            reg->values[index].data,
             &dataSize
         );
 
@@ -104,13 +91,14 @@ void snapshot(REG_MONITOR *reg) {
         if (res == ERROR_SUCCESS) {
             reg->values[index].type = type;
             reg->values[index].dataSize = dataSize;
+            send_registry_json(reg, &reg->values[index]);
             index++;
         } else {
+            send_error(hPipeErr, "RegEnumValue failed", res);
             break;
         }
     }
     reg->valueCount = index;
-    log_data(reg);
 }
 
 DWORD WINAPI registry_monitor_thread(LPVOID param) {
@@ -119,29 +107,33 @@ DWORD WINAPI registry_monitor_thread(LPVOID param) {
     int regCount = p->count;
 
     HANDLE *eventList = malloc(sizeof(HANDLE) * regCount);
+    if (!eventList) {
+        send_error(hPipeErr, "Failed to allocate eventList", ERROR_NOT_ENOUGH_MEMORY);
+        return 1;
+    }
+
     for (int i = 0; i < regCount; i++) {
-        LONG res = RegOpenKeyExW(
-            monitors[i].rootKey,
-            monitors[i].subkey,
-            0,
-            KEY_READ | KEY_NOTIFY,
-            &monitors[i].handle
-        );
+        LONG res = RegOpenKeyExW(monitors[i].rootKey, monitors[i].subkey, 0, KEY_READ | KEY_NOTIFY, &monitors[i].handle);
         if (res != ERROR_SUCCESS) {
-            wprintf(L"[!] Failed to open key: %ls (Error: %ld)\n", monitors[i].subkey, res);
+            send_error(hPipeErr, "Failed to open registry key", res);
             monitors[i].event = NULL;
             continue;
         }
 
-        monitors[i].event = CreateEvent(NULL, FALSE, FALSE, NULL); 
+        monitors[i].event = CreateEvent(NULL, FALSE, FALSE, NULL);
         eventList[i] = monitors[i].event;
         if (!monitors[i].event) {
-            wprintf(L"[!] Failed to create event for %ls\n", monitors[i].subkey);
+            send_error(hPipeErr, "Failed to create event", GetLastError());
             continue;
         }
 
-        snapshot(&monitors[i]);        
-        start_reg_monitoring(&monitors[i]); 
+        snapshot(&monitors[i]);
+
+        if (RegNotifyChangeKeyValue(monitors[i].handle, TRUE,
+            REG_NOTIFY_CHANGE_NAME | REG_NOTIFY_CHANGE_LAST_SET,
+            monitors[i].event, TRUE) != ERROR_SUCCESS) {
+            send_error(hPipeErr, "Failed to set registry notification", GetLastError());
+        }
     }
 
     while (1) {
@@ -149,16 +141,12 @@ DWORD WINAPI registry_monitor_thread(LPVOID param) {
         if (waitResult >= WAIT_OBJECT_0 && waitResult < WAIT_OBJECT_0 + regCount) {
             int index = waitResult - WAIT_OBJECT_0;
             snapshot(&monitors[index]);
-            start_reg_monitoring(&monitors[index]); 
+            RegNotifyChangeKeyValue(monitors[index].handle, TRUE,
+                REG_NOTIFY_CHANGE_NAME | REG_NOTIFY_CHANGE_LAST_SET,
+                monitors[index].event, TRUE);
         }
     }
 
-    for (int i = 0; i < regCount; i++) {
-        if (monitors[i].handle) RegCloseKey(monitors[i].handle);
-        if (monitors[i].event) CloseHandle(monitors[i].event);
-        free(monitors[i].subkey);
-    }
-    free(monitors);
     free(eventList);
-    free(p);
+    return 0;
 }
