@@ -124,6 +124,7 @@ void packet_handler(const struct pcap_pkthdr *header, const u_char *pkt_data){
     else if(type == 0x86DD){
         parse_ip6_header(packet_info, offset,pkt_data);
     }
+    packet_info[strlen(packet_info) +1]='\n';
     DWORD written;
     BOOL ok = WriteFile(hPipeNet, packet_info, strlen(packet_info), &written, NULL);
     if(!ok){
@@ -189,4 +190,4 @@ DWORD WINAPI capture_packets(LPVOID Param){
     }
     pcap_close(handle);
     return 0;
-}
+} 
