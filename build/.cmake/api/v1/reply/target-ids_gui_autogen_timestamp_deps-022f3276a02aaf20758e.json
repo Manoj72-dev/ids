@@ -1,0 +1,58 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"qt_gui/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 0,
+			"id" : "ids_core::@01b584ec7ce6f2e28d7c"
+		}
+	],
+	"id" : "ids_gui_autogen_timestamp_deps::@7ec6694c8fbd90e662ca",
+	"isGeneratorProvided" : true,
+	"name" : "ids_gui_autogen_timestamp_deps",
+	"orderDependencies" : 
+	[
+		{
+			"backtrace" : 0,
+			"id" : "Qt6::moc::@7ec6694c8fbd90e662ca"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "Qt6::uic::@7ec6694c8fbd90e662ca"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "Qt6::Widgets::@7ec6694c8fbd90e662ca"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "ids_core::@01b584ec7ce6f2e28d7c"
+		}
+	],
+	"paths" : 
+	{
+		"build" : "qt_gui",
+		"source" : "qt_gui"
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

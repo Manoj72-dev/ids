@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/manoj/Desktop/TRY/build/cmake_install.cmake",
+		"C:/Users/manoj/Desktop/TRY/build/ids_core/cmake_install.cmake",
+		"C:/Users/manoj/Desktop/TRY/build/qt_gui/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

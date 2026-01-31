@@ -1,0 +1,2 @@
+C:\msys64\mingw64\bin\ar.exe qc libids_core.a CMakeFiles/ids_core.dir/src/capture.c.obj CMakeFiles/ids_core.dir/src/packet_handler.c.obj CMakeFiles/ids_core.dir/src/datalink.c.obj CMakeFiles/ids_core.dir/src/network.c.obj CMakeFiles/ids_core.dir/src/transport.c.obj CMakeFiles/ids_core.dir/src/rules.c.obj CMakeFiles/ids_core.dir/src/ml_bridge.c.obj CMakeFiles/ids_core.dir/src/alerts.c.obj CMakeFiles/ids_core.dir/src/ids_api.c.obj
+C:\msys64\mingw64\bin\ranlib.exe libids_core.a
