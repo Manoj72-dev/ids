@@ -17,8 +17,11 @@ target_include_directories(ids_core PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-# ---- Link libpcap + Windows sockets ----
+# =========================
+# Link Npcap (NOT libpcap)
+# =========================
 target_link_libraries(ids_core
-    ${PCAP_LIBRARIES}
+    wpcap
+    Packet
     ws2_32
 )

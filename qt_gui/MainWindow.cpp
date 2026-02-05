@@ -62,11 +62,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::startIDS()
 {
+QString iface = "\\\\.\\NPF_{D2F0CE5E-F78E-459B-B1B9-6466FA75EABA}";
+    if (ids.start(iface) != 0) {
+        logViewer->append("Failed to start IDS");
+        return;
+    }
     statusLabel->setText("STATUS: RUNNING");
     startButton->setEnabled(false);
     stopButton->setEnabled(true);
 
-    logViewer->append("IDS started");
+    logViewer->append("IDS started on " + iface);
     alertTable->setRowCount(0);
 
     pollTimer->start(1000);
@@ -74,6 +79,8 @@ void MainWindow::startIDS()
 
 void MainWindow::stopIDS()
 {
+    ids.stop();
+
     statusLabel->setText("STATUS: STOPPED");
     startButton->setEnabled(true);
     stopButton->setEnabled(false);
@@ -82,6 +89,7 @@ void MainWindow::stopIDS()
 
     pollTimer->stop();
 }
+
 
 void MainWindow::pollAlerts()
 {

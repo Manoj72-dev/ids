@@ -12,6 +12,7 @@ void *capture_thread_func(void *arg);
 
 int ids_start(const char *iface){
     stop_flag = 0;
+    printf("Starting\n");
     char *iface_dup = strdup(iface);
     if(pthread_create(&capture_thread, NULL, capture_thread_func, iface_dup) != 0){
         return -1;

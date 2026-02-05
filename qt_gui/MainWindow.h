@@ -1,8 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include "ids_wrapper.h"
 #include <QMainWindow>
-
+#include "ids_wrapper.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -28,7 +28,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-
+    IDSWrapper ids;
     QLabel *statusLabel;
     QPushButton *startButton;
     QPushButton *stopButton;
