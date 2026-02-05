@@ -1,5 +1,6 @@
-C:/Users/manoj/Desktop/TRY/build/qt_gui/ids_gui_autogen/EWIEGA46WW/moc_MainWindow.cpp: C:/Users/manoj/Desktop/TRY/qt_gui/MainWindow.h \
-  C:/Users/manoj/Desktop/TRY/build/qt_gui/ids_gui_autogen/moc_predefs.h \
+C:/Users/manoj/Desktop/ids/build/qt_gui/ids_gui_autogen/EWIEGA46WW/moc_MainWindow.cpp: C:/Users/manoj/Desktop/ids/qt_gui/MainWindow.h \
+  C:/Users/manoj/Desktop/ids/build/qt_gui/ids_gui_autogen/moc_predefs.h \
+  C:/Users/manoj/Desktop/ids/qt_gui/ids_wrapper.h \
   C:/msys64/mingw64/include/_mingw.h \
   C:/msys64/mingw64/include/_mingw_mac.h \
   C:/msys64/mingw64/include/_mingw_off_t.h \
@@ -197,6 +198,7 @@ C:/Users/manoj/Desktop/TRY/build/qt_gui/ids_gui_autogen/EWIEGA46WW/moc_MainWindo
   C:/msys64/mingw64/include/pthread_signal.h \
   C:/msys64/mingw64/include/pthread_time.h \
   C:/msys64/mingw64/include/pthread_unistd.h \
+  C:/msys64/mingw64/include/qt6/QtCore/QString \
   C:/msys64/mingw64/include/qt6/QtCore/q17memory.h \
   C:/msys64/mingw64/include/qt6/QtCore/q20functional.h \
   C:/msys64/mingw64/include/qt6/QtCore/q20iterator.h \

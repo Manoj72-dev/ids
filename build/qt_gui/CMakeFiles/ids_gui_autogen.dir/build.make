@@ -52,10 +52,10 @@ RM = C:\msys64\mingw64\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\manoj\Desktop\TRY
+CMAKE_SOURCE_DIR = C:\Users\manoj\Desktop\ids
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\manoj\Desktop\TRY\build
+CMAKE_BINARY_DIR = C:\Users\manoj\Desktop\ids\build
 
 # Utility rule file for ids_gui_autogen.
 
@@ -70,9 +70,9 @@ qt_gui/CMakeFiles/ids_gui_autogen: qt_gui/ids_gui_autogen/timestamp
 qt_gui/ids_gui_autogen/timestamp: C:/msys64/mingw64/share/qt6/bin/moc.exe
 qt_gui/ids_gui_autogen/timestamp: C:/msys64/mingw64/share/qt6/bin/uic.exe
 qt_gui/ids_gui_autogen/timestamp: qt_gui/CMakeFiles/ids_gui_autogen.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\manoj\Desktop\TRY\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target ids_gui"
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && C:\msys64\mingw64\bin\cmake.exe -E cmake_autogen C:/Users/manoj/Desktop/TRY/build/qt_gui/CMakeFiles/ids_gui_autogen.dir/AutogenInfo.json ""
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && C:\msys64\mingw64\bin\cmake.exe -E touch C:/Users/manoj/Desktop/TRY/build/qt_gui/ids_gui_autogen/timestamp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\manoj\Desktop\ids\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target ids_gui"
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && C:\msys64\mingw64\bin\cmake.exe -E cmake_autogen C:/Users/manoj/Desktop/ids/build/qt_gui/CMakeFiles/ids_gui_autogen.dir/AutogenInfo.json ""
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && C:\msys64\mingw64\bin\cmake.exe -E touch C:/Users/manoj/Desktop/ids/build/qt_gui/ids_gui_autogen/timestamp
 
 qt_gui/CMakeFiles/ids_gui_autogen.dir/codegen:
 .PHONY : qt_gui/CMakeFiles/ids_gui_autogen.dir/codegen
@@ -87,10 +87,10 @@ qt_gui/CMakeFiles/ids_gui_autogen.dir/build: ids_gui_autogen
 .PHONY : qt_gui/CMakeFiles/ids_gui_autogen.dir/build
 
 qt_gui/CMakeFiles/ids_gui_autogen.dir/clean:
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && $(CMAKE_COMMAND) -P CMakeFiles\ids_gui_autogen.dir\cmake_clean.cmake
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && $(CMAKE_COMMAND) -P CMakeFiles\ids_gui_autogen.dir\cmake_clean.cmake
 .PHONY : qt_gui/CMakeFiles/ids_gui_autogen.dir/clean
 
 qt_gui/CMakeFiles/ids_gui_autogen.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\manoj\Desktop\TRY C:\Users\manoj\Desktop\TRY\qt_gui C:\Users\manoj\Desktop\TRY\build C:\Users\manoj\Desktop\TRY\build\qt_gui C:\Users\manoj\Desktop\TRY\build\qt_gui\CMakeFiles\ids_gui_autogen.dir\DependInfo.cmake "--color=$(COLOR)" ids_gui_autogen
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\manoj\Desktop\ids C:\Users\manoj\Desktop\ids\qt_gui C:\Users\manoj\Desktop\ids\build C:\Users\manoj\Desktop\ids\build\qt_gui C:\Users\manoj\Desktop\ids\build\qt_gui\CMakeFiles\ids_gui_autogen.dir\DependInfo.cmake "--color=$(COLOR)" ids_gui_autogen
 .PHONY : qt_gui/CMakeFiles/ids_gui_autogen.dir/depend
 

@@ -1,6 +1,6 @@
 qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.obj: \
- C:\Users\manoj\Desktop\TRY\qt_gui\ids_wrapper.cpp \
- C:\Users\manoj\Desktop\TRY\qt_gui\ids_wrapper.h \
+ C:\Users\manoj\Desktop\ids\qt_gui\ids_wrapper.cpp \
+ C:\Users\manoj\Desktop\ids\qt_gui\ids_wrapper.h \
  C:/msys64/mingw64/include/qt6/QtCore/QString \
  C:/msys64/mingw64/include/qt6/QtCore/qstring.h \
  C:/msys64/mingw64/include/qt6/QtCore/qchar.h \
@@ -285,4 +285,4 @@ qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.obj: \
  C:/msys64/mingw64/include/qt6/QtCore/qstring.h \
  C:/msys64/mingw64/include/qt6/QtCore/qstringconverter.h \
  C:/msys64/mingw64/include/qt6/QtCore/qstringconverter_base.h \
- C:/Users/manoj/Desktop/TRY/ids_core/include/ids_api.h
+ C:/Users/manoj/Desktop/ids/ids_core/include/ids_api.h

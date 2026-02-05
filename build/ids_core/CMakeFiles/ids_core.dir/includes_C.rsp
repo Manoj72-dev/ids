@@ -1,1 +1,1 @@
--IC:/Users/manoj/Desktop/TRY/ids_core/include
+-I"C:/npcap-sdk-1.16/Include" -IC:/Users/manoj/Desktop/ids/ids_core/include

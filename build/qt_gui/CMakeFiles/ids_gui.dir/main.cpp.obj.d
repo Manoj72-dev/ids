@@ -1,5 +1,5 @@
 qt_gui/CMakeFiles/ids_gui.dir/main.cpp.obj: \
- C:\Users\manoj\Desktop\TRY\qt_gui\main.cpp \
+ C:\Users\manoj\Desktop\ids\qt_gui\main.cpp \
  C:/msys64/mingw64/include/qt6/QtWidgets/QApplication \
  C:/msys64/mingw64/include/qt6/QtWidgets/qapplication.h \
  C:/msys64/mingw64/include/qt6/QtWidgets/qtwidgetsglobal.h \
@@ -385,7 +385,10 @@ qt_gui/CMakeFiles/ids_gui.dir/main.cpp.obj: \
  C:/msys64/mingw64/include/qt6/QtCore/qvarlengtharray.h \
  C:/msys64/mingw64/include/qt6/QtCore/qalloc.h \
  C:/msys64/mingw64/include/qt6/QtGui/qguiapplication_platform.h \
- C:\Users\manoj\Desktop\TRY\qt_gui\MainWindow.h \
+ C:\Users\manoj\Desktop\ids\qt_gui\MainWindow.h \
+ C:\Users\manoj\Desktop\ids\qt_gui\ids_wrapper.h \
+ C:/msys64/mingw64/include/qt6/QtCore/QString \
+ C:/msys64/mingw64/include/qt6/QtCore/qstring.h \
  C:/msys64/mingw64/include/qt6/QtWidgets/QMainWindow \
  C:/msys64/mingw64/include/qt6/QtWidgets/qmainwindow.h \
  C:/msys64/mingw64/include/qt6/QtWidgets/qwidget.h \

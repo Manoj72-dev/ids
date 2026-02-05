@@ -924,21 +924,6 @@
 			"path" : "C:/msys64/mingw64/share/cmake/Modules/CMakeCXXCompiler.cmake.in"
 		},
 		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "C:/msys64/mingw64/share/cmake/Modules/FindPkgConfig.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "C:/msys64/mingw64/share/cmake/Modules/FindPackageHandleStandardArgs.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "C:/msys64/mingw64/share/cmake/Modules/FindPackageMessage.cmake"
-		},
-		{
 			"path" : "ids_core/CMakeLists.txt"
 		},
 		{
@@ -2050,8 +2035,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "C:/Users/manoj/Desktop/TRY/build",
-		"source" : "C:/Users/manoj/Desktop/TRY"
+		"build" : "C:/Users/manoj/Desktop/ids/build",
+		"source" : "C:/Users/manoj/Desktop/ids"
 	},
 	"version" : 
 	{

@@ -729,14 +729,14 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "ids_core::@01b584ec7ce6f2e28d7c",
-					"jsonFile" : "target-ids_core-35505bd65f0bda6d3242.json",
+					"jsonFile" : "target-ids_core-952c6d80a7f9ad94a2d0.json",
 					"name" : "ids_core",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 2,
 					"id" : "ids_gui::@7ec6694c8fbd90e662ca",
-					"jsonFile" : "target-ids_gui-f7f77841bfd28a7149a9.json",
+					"jsonFile" : "target-ids_gui-6d594988aa4005a426bd.json",
 					"name" : "ids_gui",
 					"projectIndex" : 2
 				},
@@ -760,8 +760,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/manoj/Desktop/TRY/build",
-		"source" : "C:/Users/manoj/Desktop/TRY"
+		"build" : "C:/Users/manoj/Desktop/ids/build",
+		"source" : "C:/Users/manoj/Desktop/ids"
 	},
 	"version" : 
 	{

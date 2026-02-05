@@ -1,6 +1,6 @@
 ids_core/CMakeFiles/ids_core.dir/src/ml_bridge.c.obj: \
- C:\Users\manoj\Desktop\TRY\ids_core\src\ml_bridge.c \
- C:/Users/manoj/Desktop/TRY/ids_core/include/ml_bridge.h \
+ C:\Users\manoj\Desktop\ids\ids_core\src\ml_bridge.c \
+ C:/Users/manoj/Desktop/ids/ids_core/include/ml_bridge.h \
  C:/msys64/mingw64/include/stdio.h \
  C:/msys64/mingw64/include/corecrt_stdio_config.h \
  C:/msys64/mingw64/include/corecrt.h C:/msys64/mingw64/include/_mingw.h \

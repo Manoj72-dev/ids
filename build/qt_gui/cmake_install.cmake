@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/manoj/Desktop/TRY/qt_gui
+# Install script for directory: C:/Users/manoj/Desktop/ids/qt_gui
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,6 +40,6 @@ endif()
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "C:/Users/manoj/Desktop/TRY/build/qt_gui/install_local_manifest.txt"
+  file(WRITE "C:/Users/manoj/Desktop/ids/build/qt_gui/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

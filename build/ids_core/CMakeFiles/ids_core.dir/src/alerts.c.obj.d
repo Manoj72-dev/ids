@@ -1,6 +1,6 @@
 ids_core/CMakeFiles/ids_core.dir/src/alerts.c.obj: \
- C:\Users\manoj\Desktop\TRY\ids_core\src\alerts.c \
- C:/Users/manoj/Desktop/TRY/ids_core/include/alerts.h \
+ C:\Users\manoj\Desktop\ids\ids_core\src\alerts.c \
+ C:/Users/manoj/Desktop/ids/ids_core/include/alerts.h \
  C:/msys64/mingw64/include/string.h C:/msys64/mingw64/include/crtdefs.h \
  C:/msys64/mingw64/include/corecrt.h C:/msys64/mingw64/include/_mingw.h \
  C:/msys64/mingw64/include/_mingw_mac.h \

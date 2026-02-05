@@ -52,10 +52,10 @@ RM = C:\msys64\mingw64\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\manoj\Desktop\TRY
+CMAKE_SOURCE_DIR = C:\Users\manoj\Desktop\ids
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\manoj\Desktop\TRY\build
+CMAKE_BINARY_DIR = C:\Users\manoj\Desktop\ids\build
 
 # Utility rule file for ids_gui_autogen_timestamp_deps.
 
@@ -76,10 +76,10 @@ qt_gui/CMakeFiles/ids_gui_autogen_timestamp_deps.dir/build: ids_gui_autogen_time
 .PHONY : qt_gui/CMakeFiles/ids_gui_autogen_timestamp_deps.dir/build
 
 qt_gui/CMakeFiles/ids_gui_autogen_timestamp_deps.dir/clean:
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && $(CMAKE_COMMAND) -P CMakeFiles\ids_gui_autogen_timestamp_deps.dir\cmake_clean.cmake
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && $(CMAKE_COMMAND) -P CMakeFiles\ids_gui_autogen_timestamp_deps.dir\cmake_clean.cmake
 .PHONY : qt_gui/CMakeFiles/ids_gui_autogen_timestamp_deps.dir/clean
 
 qt_gui/CMakeFiles/ids_gui_autogen_timestamp_deps.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\manoj\Desktop\TRY C:\Users\manoj\Desktop\TRY\qt_gui C:\Users\manoj\Desktop\TRY\build C:\Users\manoj\Desktop\TRY\build\qt_gui C:\Users\manoj\Desktop\TRY\build\qt_gui\CMakeFiles\ids_gui_autogen_timestamp_deps.dir\DependInfo.cmake "--color=$(COLOR)" ids_gui_autogen_timestamp_deps
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\manoj\Desktop\ids C:\Users\manoj\Desktop\ids\qt_gui C:\Users\manoj\Desktop\ids\build C:\Users\manoj\Desktop\ids\build\qt_gui C:\Users\manoj\Desktop\ids\build\qt_gui\CMakeFiles\ids_gui_autogen_timestamp_deps.dir\DependInfo.cmake "--color=$(COLOR)" ids_gui_autogen_timestamp_deps
 .PHONY : qt_gui/CMakeFiles/ids_gui_autogen_timestamp_deps.dir/depend
 

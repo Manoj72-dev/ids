@@ -56,10 +56,10 @@ RM = C:\msys64\mingw64\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\manoj\Desktop\TRY
+CMAKE_SOURCE_DIR = C:\Users\manoj\Desktop\ids
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\manoj\Desktop\TRY\build
+CMAKE_BINARY_DIR = C:\Users\manoj\Desktop\ids\build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,14 +86,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(CMAKE_COMMAND) -E cmake_progress_start C:\Users\manoj\Desktop\TRY\build\CMakeFiles C:\Users\manoj\Desktop\TRY\build\qt_gui\\CMakeFiles\progress.marks
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 qt_gui/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\manoj\Desktop\TRY\build\CMakeFiles 0
+	cd /d C:\Users\manoj\Desktop\ids\build && $(CMAKE_COMMAND) -E cmake_progress_start C:\Users\manoj\Desktop\ids\build\CMakeFiles C:\Users\manoj\Desktop\ids\build\qt_gui\\CMakeFiles\progress.marks
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 qt_gui/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\manoj\Desktop\ids\build\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 qt_gui/clean
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 qt_gui/clean
 .PHONY : clean
 
 # The main clean target
@@ -102,22 +102,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 qt_gui/preinstall
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 qt_gui/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 qt_gui/preinstall
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 qt_gui/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
+	cd /d C:\Users\manoj\Desktop\ids\build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 qt_gui/CMakeFiles/ids_gui.dir/rule:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 qt_gui/CMakeFiles/ids_gui.dir/rule
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 qt_gui/CMakeFiles/ids_gui.dir/rule
 .PHONY : qt_gui/CMakeFiles/ids_gui.dir/rule
 
 # Convenience name for target.
@@ -126,12 +126,12 @@ ids_gui: qt_gui/CMakeFiles/ids_gui.dir/rule
 
 # fast build rule for target.
 ids_gui/fast:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/build
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/build
 .PHONY : ids_gui/fast
 
 # Convenience name for target.
 qt_gui/CMakeFiles/ids_gui_autogen_timestamp_deps.dir/rule:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 qt_gui/CMakeFiles/ids_gui_autogen_timestamp_deps.dir/rule
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 qt_gui/CMakeFiles/ids_gui_autogen_timestamp_deps.dir/rule
 .PHONY : qt_gui/CMakeFiles/ids_gui_autogen_timestamp_deps.dir/rule
 
 # Convenience name for target.
@@ -140,12 +140,12 @@ ids_gui_autogen_timestamp_deps: qt_gui/CMakeFiles/ids_gui_autogen_timestamp_deps
 
 # fast build rule for target.
 ids_gui_autogen_timestamp_deps/fast:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui_autogen_timestamp_deps.dir\build.make qt_gui/CMakeFiles/ids_gui_autogen_timestamp_deps.dir/build
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui_autogen_timestamp_deps.dir\build.make qt_gui/CMakeFiles/ids_gui_autogen_timestamp_deps.dir/build
 .PHONY : ids_gui_autogen_timestamp_deps/fast
 
 # Convenience name for target.
 qt_gui/CMakeFiles/ids_gui_autogen.dir/rule:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 qt_gui/CMakeFiles/ids_gui_autogen.dir/rule
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 qt_gui/CMakeFiles/ids_gui_autogen.dir/rule
 .PHONY : qt_gui/CMakeFiles/ids_gui_autogen.dir/rule
 
 # Convenience name for target.
@@ -154,7 +154,7 @@ ids_gui_autogen: qt_gui/CMakeFiles/ids_gui_autogen.dir/rule
 
 # fast build rule for target.
 ids_gui_autogen/fast:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui_autogen.dir\build.make qt_gui/CMakeFiles/ids_gui_autogen.dir/build
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui_autogen.dir\build.make qt_gui/CMakeFiles/ids_gui_autogen.dir/build
 .PHONY : ids_gui_autogen/fast
 
 MainWindow.obj: MainWindow.cpp.obj
@@ -162,7 +162,7 @@ MainWindow.obj: MainWindow.cpp.obj
 
 # target to build an object file
 MainWindow.cpp.obj:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj
 .PHONY : MainWindow.cpp.obj
 
 MainWindow.i: MainWindow.cpp.i
@@ -170,7 +170,7 @@ MainWindow.i: MainWindow.cpp.i
 
 # target to preprocess a source file
 MainWindow.cpp.i:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.i
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.i
 .PHONY : MainWindow.cpp.i
 
 MainWindow.s: MainWindow.cpp.s
@@ -178,7 +178,7 @@ MainWindow.s: MainWindow.cpp.s
 
 # target to generate assembly for a file
 MainWindow.cpp.s:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.s
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.s
 .PHONY : MainWindow.cpp.s
 
 ids_gui_autogen/mocs_compilation.obj: ids_gui_autogen/mocs_compilation.cpp.obj
@@ -186,7 +186,7 @@ ids_gui_autogen/mocs_compilation.obj: ids_gui_autogen/mocs_compilation.cpp.obj
 
 # target to build an object file
 ids_gui_autogen/mocs_compilation.cpp.obj:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.obj
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.obj
 .PHONY : ids_gui_autogen/mocs_compilation.cpp.obj
 
 ids_gui_autogen/mocs_compilation.i: ids_gui_autogen/mocs_compilation.cpp.i
@@ -194,7 +194,7 @@ ids_gui_autogen/mocs_compilation.i: ids_gui_autogen/mocs_compilation.cpp.i
 
 # target to preprocess a source file
 ids_gui_autogen/mocs_compilation.cpp.i:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.i
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.i
 .PHONY : ids_gui_autogen/mocs_compilation.cpp.i
 
 ids_gui_autogen/mocs_compilation.s: ids_gui_autogen/mocs_compilation.cpp.s
@@ -202,7 +202,7 @@ ids_gui_autogen/mocs_compilation.s: ids_gui_autogen/mocs_compilation.cpp.s
 
 # target to generate assembly for a file
 ids_gui_autogen/mocs_compilation.cpp.s:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.s
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.s
 .PHONY : ids_gui_autogen/mocs_compilation.cpp.s
 
 ids_wrapper.obj: ids_wrapper.cpp.obj
@@ -210,7 +210,7 @@ ids_wrapper.obj: ids_wrapper.cpp.obj
 
 # target to build an object file
 ids_wrapper.cpp.obj:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.obj
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.obj
 .PHONY : ids_wrapper.cpp.obj
 
 ids_wrapper.i: ids_wrapper.cpp.i
@@ -218,7 +218,7 @@ ids_wrapper.i: ids_wrapper.cpp.i
 
 # target to preprocess a source file
 ids_wrapper.cpp.i:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.i
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.i
 .PHONY : ids_wrapper.cpp.i
 
 ids_wrapper.s: ids_wrapper.cpp.s
@@ -226,7 +226,7 @@ ids_wrapper.s: ids_wrapper.cpp.s
 
 # target to generate assembly for a file
 ids_wrapper.cpp.s:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.s
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.s
 .PHONY : ids_wrapper.cpp.s
 
 main.obj: main.cpp.obj
@@ -234,7 +234,7 @@ main.obj: main.cpp.obj
 
 # target to build an object file
 main.cpp.obj:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/main.cpp.obj
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/main.cpp.obj
 .PHONY : main.cpp.obj
 
 main.i: main.cpp.i
@@ -242,7 +242,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/main.cpp.i
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -250,7 +250,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/main.cpp.s
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f qt_gui\CMakeFiles\ids_gui.dir\build.make qt_gui/CMakeFiles/ids_gui.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -287,6 +287,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
+	cd /d C:\Users\manoj\Desktop\ids\build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

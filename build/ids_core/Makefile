@@ -56,10 +56,10 @@ RM = C:\msys64\mingw64\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\manoj\Desktop\TRY
+CMAKE_SOURCE_DIR = C:\Users\manoj\Desktop\ids
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\manoj\Desktop\TRY\build
+CMAKE_BINARY_DIR = C:\Users\manoj\Desktop\ids\build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,14 +86,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(CMAKE_COMMAND) -E cmake_progress_start C:\Users\manoj\Desktop\TRY\build\CMakeFiles C:\Users\manoj\Desktop\TRY\build\ids_core\\CMakeFiles\progress.marks
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ids_core/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\manoj\Desktop\TRY\build\CMakeFiles 0
+	cd /d C:\Users\manoj\Desktop\ids\build && $(CMAKE_COMMAND) -E cmake_progress_start C:\Users\manoj\Desktop\ids\build\CMakeFiles C:\Users\manoj\Desktop\ids\build\ids_core\\CMakeFiles\progress.marks
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ids_core/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\manoj\Desktop\ids\build\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ids_core/clean
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ids_core/clean
 .PHONY : clean
 
 # The main clean target
@@ -102,22 +102,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ids_core/preinstall
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ids_core/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ids_core/preinstall
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ids_core/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
+	cd /d C:\Users\manoj\Desktop\ids\build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 ids_core/CMakeFiles/ids_core.dir/rule:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ids_core/CMakeFiles/ids_core.dir/rule
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 ids_core/CMakeFiles/ids_core.dir/rule
 .PHONY : ids_core/CMakeFiles/ids_core.dir/rule
 
 # Convenience name for target.
@@ -126,7 +126,7 @@ ids_core: ids_core/CMakeFiles/ids_core.dir/rule
 
 # fast build rule for target.
 ids_core/fast:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/build
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/build
 .PHONY : ids_core/fast
 
 src/alerts.obj: src/alerts.c.obj
@@ -134,7 +134,7 @@ src/alerts.obj: src/alerts.c.obj
 
 # target to build an object file
 src/alerts.c.obj:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/alerts.c.obj
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/alerts.c.obj
 .PHONY : src/alerts.c.obj
 
 src/alerts.i: src/alerts.c.i
@@ -142,7 +142,7 @@ src/alerts.i: src/alerts.c.i
 
 # target to preprocess a source file
 src/alerts.c.i:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/alerts.c.i
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/alerts.c.i
 .PHONY : src/alerts.c.i
 
 src/alerts.s: src/alerts.c.s
@@ -150,7 +150,7 @@ src/alerts.s: src/alerts.c.s
 
 # target to generate assembly for a file
 src/alerts.c.s:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/alerts.c.s
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/alerts.c.s
 .PHONY : src/alerts.c.s
 
 src/capture.obj: src/capture.c.obj
@@ -158,7 +158,7 @@ src/capture.obj: src/capture.c.obj
 
 # target to build an object file
 src/capture.c.obj:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/capture.c.obj
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/capture.c.obj
 .PHONY : src/capture.c.obj
 
 src/capture.i: src/capture.c.i
@@ -166,7 +166,7 @@ src/capture.i: src/capture.c.i
 
 # target to preprocess a source file
 src/capture.c.i:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/capture.c.i
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/capture.c.i
 .PHONY : src/capture.c.i
 
 src/capture.s: src/capture.c.s
@@ -174,7 +174,7 @@ src/capture.s: src/capture.c.s
 
 # target to generate assembly for a file
 src/capture.c.s:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/capture.c.s
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/capture.c.s
 .PHONY : src/capture.c.s
 
 src/datalink.obj: src/datalink.c.obj
@@ -182,7 +182,7 @@ src/datalink.obj: src/datalink.c.obj
 
 # target to build an object file
 src/datalink.c.obj:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/datalink.c.obj
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/datalink.c.obj
 .PHONY : src/datalink.c.obj
 
 src/datalink.i: src/datalink.c.i
@@ -190,7 +190,7 @@ src/datalink.i: src/datalink.c.i
 
 # target to preprocess a source file
 src/datalink.c.i:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/datalink.c.i
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/datalink.c.i
 .PHONY : src/datalink.c.i
 
 src/datalink.s: src/datalink.c.s
@@ -198,7 +198,7 @@ src/datalink.s: src/datalink.c.s
 
 # target to generate assembly for a file
 src/datalink.c.s:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/datalink.c.s
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/datalink.c.s
 .PHONY : src/datalink.c.s
 
 src/ids_api.obj: src/ids_api.c.obj
@@ -206,7 +206,7 @@ src/ids_api.obj: src/ids_api.c.obj
 
 # target to build an object file
 src/ids_api.c.obj:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/ids_api.c.obj
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/ids_api.c.obj
 .PHONY : src/ids_api.c.obj
 
 src/ids_api.i: src/ids_api.c.i
@@ -214,7 +214,7 @@ src/ids_api.i: src/ids_api.c.i
 
 # target to preprocess a source file
 src/ids_api.c.i:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/ids_api.c.i
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/ids_api.c.i
 .PHONY : src/ids_api.c.i
 
 src/ids_api.s: src/ids_api.c.s
@@ -222,7 +222,7 @@ src/ids_api.s: src/ids_api.c.s
 
 # target to generate assembly for a file
 src/ids_api.c.s:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/ids_api.c.s
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/ids_api.c.s
 .PHONY : src/ids_api.c.s
 
 src/ml_bridge.obj: src/ml_bridge.c.obj
@@ -230,7 +230,7 @@ src/ml_bridge.obj: src/ml_bridge.c.obj
 
 # target to build an object file
 src/ml_bridge.c.obj:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/ml_bridge.c.obj
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/ml_bridge.c.obj
 .PHONY : src/ml_bridge.c.obj
 
 src/ml_bridge.i: src/ml_bridge.c.i
@@ -238,7 +238,7 @@ src/ml_bridge.i: src/ml_bridge.c.i
 
 # target to preprocess a source file
 src/ml_bridge.c.i:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/ml_bridge.c.i
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/ml_bridge.c.i
 .PHONY : src/ml_bridge.c.i
 
 src/ml_bridge.s: src/ml_bridge.c.s
@@ -246,7 +246,7 @@ src/ml_bridge.s: src/ml_bridge.c.s
 
 # target to generate assembly for a file
 src/ml_bridge.c.s:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/ml_bridge.c.s
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/ml_bridge.c.s
 .PHONY : src/ml_bridge.c.s
 
 src/network.obj: src/network.c.obj
@@ -254,7 +254,7 @@ src/network.obj: src/network.c.obj
 
 # target to build an object file
 src/network.c.obj:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/network.c.obj
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/network.c.obj
 .PHONY : src/network.c.obj
 
 src/network.i: src/network.c.i
@@ -262,7 +262,7 @@ src/network.i: src/network.c.i
 
 # target to preprocess a source file
 src/network.c.i:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/network.c.i
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/network.c.i
 .PHONY : src/network.c.i
 
 src/network.s: src/network.c.s
@@ -270,7 +270,7 @@ src/network.s: src/network.c.s
 
 # target to generate assembly for a file
 src/network.c.s:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/network.c.s
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/network.c.s
 .PHONY : src/network.c.s
 
 src/packet_handler.obj: src/packet_handler.c.obj
@@ -278,7 +278,7 @@ src/packet_handler.obj: src/packet_handler.c.obj
 
 # target to build an object file
 src/packet_handler.c.obj:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/packet_handler.c.obj
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/packet_handler.c.obj
 .PHONY : src/packet_handler.c.obj
 
 src/packet_handler.i: src/packet_handler.c.i
@@ -286,7 +286,7 @@ src/packet_handler.i: src/packet_handler.c.i
 
 # target to preprocess a source file
 src/packet_handler.c.i:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/packet_handler.c.i
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/packet_handler.c.i
 .PHONY : src/packet_handler.c.i
 
 src/packet_handler.s: src/packet_handler.c.s
@@ -294,7 +294,7 @@ src/packet_handler.s: src/packet_handler.c.s
 
 # target to generate assembly for a file
 src/packet_handler.c.s:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/packet_handler.c.s
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/packet_handler.c.s
 .PHONY : src/packet_handler.c.s
 
 src/rules.obj: src/rules.c.obj
@@ -302,7 +302,7 @@ src/rules.obj: src/rules.c.obj
 
 # target to build an object file
 src/rules.c.obj:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/rules.c.obj
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/rules.c.obj
 .PHONY : src/rules.c.obj
 
 src/rules.i: src/rules.c.i
@@ -310,7 +310,7 @@ src/rules.i: src/rules.c.i
 
 # target to preprocess a source file
 src/rules.c.i:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/rules.c.i
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/rules.c.i
 .PHONY : src/rules.c.i
 
 src/rules.s: src/rules.c.s
@@ -318,7 +318,7 @@ src/rules.s: src/rules.c.s
 
 # target to generate assembly for a file
 src/rules.c.s:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/rules.c.s
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/rules.c.s
 .PHONY : src/rules.c.s
 
 src/transport.obj: src/transport.c.obj
@@ -326,7 +326,7 @@ src/transport.obj: src/transport.c.obj
 
 # target to build an object file
 src/transport.c.obj:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/transport.c.obj
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/transport.c.obj
 .PHONY : src/transport.c.obj
 
 src/transport.i: src/transport.c.i
@@ -334,7 +334,7 @@ src/transport.i: src/transport.c.i
 
 # target to preprocess a source file
 src/transport.c.i:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/transport.c.i
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/transport.c.i
 .PHONY : src/transport.c.i
 
 src/transport.s: src/transport.c.s
@@ -342,7 +342,7 @@ src/transport.s: src/transport.c.s
 
 # target to generate assembly for a file
 src/transport.c.s:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/transport.c.s
+	cd /d C:\Users\manoj\Desktop\ids\build && $(MAKE) $(MAKESILENT) -f ids_core\CMakeFiles\ids_core.dir\build.make ids_core/CMakeFiles/ids_core.dir/src/transport.c.s
 .PHONY : src/transport.c.s
 
 # Help Target
@@ -392,6 +392,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /d C:\Users\manoj\Desktop\TRY\build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
+	cd /d C:\Users\manoj\Desktop\ids\build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

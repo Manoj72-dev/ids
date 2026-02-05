@@ -1,5 +1,5 @@
-set(__QT_DEPLOY_TARGET_ids_core_FILE C:/Users/manoj/Desktop/TRY/build/ids_core/libids_core.a)
+set(__QT_DEPLOY_TARGET_ids_core_FILE C:/Users/manoj/Desktop/ids/build/ids_core/libids_core.a)
 set(__QT_DEPLOY_TARGET_ids_core_TYPE STATIC_LIBRARY)
-set(__QT_DEPLOY_TARGET_ids_gui_FILE C:/Users/manoj/Desktop/TRY/build/qt_gui/ids_gui.exe)
+set(__QT_DEPLOY_TARGET_ids_gui_FILE C:/Users/manoj/Desktop/ids/build/qt_gui/ids_gui.exe)
 set(__QT_DEPLOY_TARGET_ids_gui_TYPE EXECUTABLE)
 set(__QT_DEPLOY_TARGET_ids_gui_RUNTIME_DLLS C:/msys64/mingw64/bin/Qt6Widgets.dll;C:/msys64/mingw64/bin/Qt6Gui.dll;C:/msys64/mingw64/bin/Qt6Core.dll)

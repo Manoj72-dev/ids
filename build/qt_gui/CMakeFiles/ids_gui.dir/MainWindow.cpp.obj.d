@@ -1,10 +1,10 @@
 qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj: \
- C:\Users\manoj\Desktop\TRY\qt_gui\MainWindow.cpp \
- C:\Users\manoj\Desktop\TRY\qt_gui\MainWindow.h \
- C:/msys64/mingw64/include/qt6/QtWidgets/QMainWindow \
- C:/msys64/mingw64/include/qt6/QtWidgets/qmainwindow.h \
- C:/msys64/mingw64/include/qt6/QtWidgets/qtwidgetsglobal.h \
- C:/msys64/mingw64/include/qt6/QtGui/qtguiglobal.h \
+ C:\Users\manoj\Desktop\ids\qt_gui\MainWindow.cpp \
+ C:\Users\manoj\Desktop\ids\qt_gui\MainWindow.h \
+ C:\Users\manoj\Desktop\ids\qt_gui\ids_wrapper.h \
+ C:/msys64/mingw64/include/qt6/QtCore/QString \
+ C:/msys64/mingw64/include/qt6/QtCore/qstring.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qchar.h \
  C:/msys64/mingw64/include/qt6/QtCore/qglobal.h \
  C:/msys64/mingw64/include/c++/15.2.0/type_traits \
  C:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
@@ -152,14 +152,6 @@ qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj: \
  C:/msys64/mingw64/include/qt6/QtCore/qtresource.h \
  C:/msys64/mingw64/include/qt6/QtCore/qttranslation.h \
  C:/msys64/mingw64/include/qt6/QtCore/qversiontagging.h \
- C:/msys64/mingw64/include/qt6/QtGui/qtgui-config.h \
- C:/msys64/mingw64/include/qt6/QtGui/qtguiexports.h \
- C:/msys64/mingw64/include/qt6/QtWidgets/qtwidgets-config.h \
- C:/msys64/mingw64/include/qt6/QtWidgets/qtwidgetsexports.h \
- C:/msys64/mingw64/include/qt6/QtWidgets/qwidget.h \
- C:/msys64/mingw64/include/qt6/QtGui/qwindowdefs.h \
- C:/msys64/mingw64/include/qt6/QtCore/qobjectdefs.h \
- C:/msys64/mingw64/include/qt6/QtCore/qnamespace.h \
  C:/msys64/mingw64/include/qt6/QtCore/qcompare.h \
  C:/msys64/mingw64/include/qt6/QtCore/qstdlibdetection.h \
  C:/msys64/mingw64/include/qt6/QtCore/qcomparehelpers.h \
@@ -190,14 +182,22 @@ qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj: \
  C:/msys64/mingw64/include/c++/15.2.0/bits/vector.tcc \
  C:/msys64/mingw64/include/c++/15.2.0/array \
  C:/msys64/mingw64/include/c++/15.2.0/compare \
+ C:/msys64/mingw64/include/qt6/QtCore/qstringview.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qbytearray.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qrefcount.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qnamespace.h \
  C:/msys64/mingw64/include/qt6/QtCore/qtmetamacros.h \
- C:/msys64/mingw64/include/qt6/QtCore/qobjectdefs_impl.h \
- C:/msys64/mingw64/include/qt6/QtCore/qfunctionaltools_impl.h \
- C:/msys64/mingw64/include/c++/15.2.0/memory \
- C:/msys64/mingw64/include/c++/15.2.0/bits/stl_raw_storage_iter.h \
- C:/msys64/mingw64/include/c++/15.2.0/bits/align.h \
- C:/msys64/mingw64/include/c++/15.2.0/bits/unique_ptr.h \
- C:/msys64/mingw64/include/c++/15.2.0/bits/shared_ptr.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qarraydata.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qpair.h \
+ C:/msys64/mingw64/include/string.h \
+ C:/msys64/mingw64/include/sec_api/string_s.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qarraydatapointer.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qarraydataops.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qcontainertools_impl.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qxptype_traits.h \
+ C:/msys64/mingw64/include/c++/15.2.0/cstring \
+ C:/msys64/mingw64/include/c++/15.2.0/iterator \
+ C:/msys64/mingw64/include/c++/15.2.0/bits/stream_iterator.h \
  C:/msys64/mingw64/include/c++/15.2.0/iosfwd \
  C:/msys64/mingw64/include/c++/15.2.0/bits/stringfwd.h \
  C:/msys64/mingw64/include/c++/15.2.0/bits/postypes.h \
@@ -211,8 +211,16 @@ qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj: \
  C:/msys64/mingw64/include/_mingw_stat64.h \
  C:/msys64/mingw64/include/swprintf.inl \
  C:/msys64/mingw64/include/sec_api/wchar_s.h \
- C:/msys64/mingw64/include/c++/15.2.0/bits/shared_ptr_base.h \
- C:/msys64/mingw64/include/c++/15.2.0/bits/allocated_ptr.h \
+ C:/msys64/mingw64/include/c++/15.2.0/bits/streambuf_iterator.h \
+ C:/msys64/mingw64/include/c++/15.2.0/streambuf \
+ C:/msys64/mingw64/include/c++/15.2.0/bits/localefwd.h \
+ C:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h \
+ C:/msys64/mingw64/include/c++/15.2.0/clocale \
+ C:/msys64/mingw64/include/locale.h C:/msys64/mingw64/include/stdio.h \
+ C:/msys64/mingw64/include/sec_api/stdio_s.h \
+ C:/msys64/mingw64/include/c++/15.2.0/cctype \
+ C:/msys64/mingw64/include/ctype.h \
+ C:/msys64/mingw64/include/c++/15.2.0/bits/ios_base.h \
  C:/msys64/mingw64/include/c++/15.2.0/ext/atomicity.h \
  C:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/gthr.h \
  C:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/gthr-default.h \
@@ -230,38 +238,6 @@ qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj: \
  C:/msys64/mingw64/include/sched.h \
  C:/msys64/mingw64/include/pthread_unistd.h \
  C:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/atomic_word.h \
- C:/msys64/mingw64/include/c++/15.2.0/ext/concurrence.h \
- C:/msys64/mingw64/include/c++/15.2.0/bits/shared_ptr_atomic.h \
- C:/msys64/mingw64/include/c++/15.2.0/backward/auto_ptr.h \
- C:/msys64/mingw64/include/c++/15.2.0/pstl/glue_memory_defs.h \
- C:/msys64/mingw64/include/qt6/QtGui/qwindowdefs_win.h \
- C:/msys64/mingw64/include/qt6/QtCore/qobject.h \
- C:/msys64/mingw64/include/qt6/QtCore/qstring.h \
- C:/msys64/mingw64/include/qt6/QtCore/qchar.h \
- C:/msys64/mingw64/include/qt6/QtCore/qstringview.h \
- C:/msys64/mingw64/include/qt6/QtCore/qbytearray.h \
- C:/msys64/mingw64/include/qt6/QtCore/qrefcount.h \
- C:/msys64/mingw64/include/qt6/QtCore/qarraydata.h \
- C:/msys64/mingw64/include/qt6/QtCore/qpair.h \
- C:/msys64/mingw64/include/string.h \
- C:/msys64/mingw64/include/sec_api/string_s.h \
- C:/msys64/mingw64/include/qt6/QtCore/qarraydatapointer.h \
- C:/msys64/mingw64/include/qt6/QtCore/qarraydataops.h \
- C:/msys64/mingw64/include/qt6/QtCore/qcontainertools_impl.h \
- C:/msys64/mingw64/include/qt6/QtCore/qxptype_traits.h \
- C:/msys64/mingw64/include/c++/15.2.0/cstring \
- C:/msys64/mingw64/include/c++/15.2.0/iterator \
- C:/msys64/mingw64/include/c++/15.2.0/bits/stream_iterator.h \
- C:/msys64/mingw64/include/c++/15.2.0/bits/streambuf_iterator.h \
- C:/msys64/mingw64/include/c++/15.2.0/streambuf \
- C:/msys64/mingw64/include/c++/15.2.0/bits/localefwd.h \
- C:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h \
- C:/msys64/mingw64/include/c++/15.2.0/clocale \
- C:/msys64/mingw64/include/locale.h C:/msys64/mingw64/include/stdio.h \
- C:/msys64/mingw64/include/sec_api/stdio_s.h \
- C:/msys64/mingw64/include/c++/15.2.0/cctype \
- C:/msys64/mingw64/include/ctype.h \
- C:/msys64/mingw64/include/c++/15.2.0/bits/ios_base.h \
  C:/msys64/mingw64/include/c++/15.2.0/bits/locale_classes.h \
  C:/msys64/mingw64/include/c++/15.2.0/string \
  C:/msys64/mingw64/include/c++/15.2.0/bits/char_traits.h \
@@ -280,6 +256,17 @@ qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj: \
  C:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/error_constants.h \
  C:/msys64/mingw64/include/c++/15.2.0/stdexcept \
  C:/msys64/mingw64/include/c++/15.2.0/bits/streambuf.tcc \
+ C:/msys64/mingw64/include/c++/15.2.0/memory \
+ C:/msys64/mingw64/include/c++/15.2.0/bits/stl_raw_storage_iter.h \
+ C:/msys64/mingw64/include/c++/15.2.0/bits/align.h \
+ C:/msys64/mingw64/include/c++/15.2.0/bits/unique_ptr.h \
+ C:/msys64/mingw64/include/c++/15.2.0/bits/shared_ptr.h \
+ C:/msys64/mingw64/include/c++/15.2.0/bits/shared_ptr_base.h \
+ C:/msys64/mingw64/include/c++/15.2.0/bits/allocated_ptr.h \
+ C:/msys64/mingw64/include/c++/15.2.0/ext/concurrence.h \
+ C:/msys64/mingw64/include/c++/15.2.0/bits/shared_ptr_atomic.h \
+ C:/msys64/mingw64/include/c++/15.2.0/backward/auto_ptr.h \
+ C:/msys64/mingw64/include/c++/15.2.0/pstl/glue_memory_defs.h \
  C:/msys64/mingw64/include/qt6/QtCore/q20functional.h \
  C:/msys64/mingw64/include/qt6/QtCore/q20memory.h \
  C:/msys64/mingw64/include/qt6/QtCore/q17memory.h \
@@ -296,8 +283,24 @@ qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj: \
  C:/msys64/mingw64/include/qt6/QtCore/qstringtokenizer.h \
  C:/msys64/mingw64/include/qt6/QtCore/q23type_traits.h \
  C:/msys64/mingw64/include/qt6/QtCore/qstringbuilder.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qstring.h \
  C:/msys64/mingw64/include/qt6/QtCore/qstringconverter.h \
  C:/msys64/mingw64/include/qt6/QtCore/qstringconverter_base.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QMainWindow \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qmainwindow.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qtwidgetsglobal.h \
+ C:/msys64/mingw64/include/qt6/QtGui/qtguiglobal.h \
+ C:/msys64/mingw64/include/qt6/QtGui/qtgui-config.h \
+ C:/msys64/mingw64/include/qt6/QtGui/qtguiexports.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qtwidgets-config.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qtwidgetsexports.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qwidget.h \
+ C:/msys64/mingw64/include/qt6/QtGui/qwindowdefs.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qobjectdefs.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qobjectdefs_impl.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qfunctionaltools_impl.h \
+ C:/msys64/mingw64/include/qt6/QtGui/qwindowdefs_win.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qobject.h \
  C:/msys64/mingw64/include/qt6/QtCore/qlist.h \
  C:/msys64/mingw64/include/qt6/QtCore/qhashfunctions.h \
  C:/msys64/mingw64/include/c++/15.2.0/numeric \
@@ -387,7 +390,7 @@ qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj: \
  C:/msys64/mingw64/include/qt6/QtGui/qcursor.h \
  C:/msys64/mingw64/include/qt6/QtGui/qbitmap.h \
  C:/msys64/mingw64/include/qt6/QtWidgets/qtabwidget.h \
- C:/Users/manoj/Desktop/TRY/build/qt_gui/ids_gui_autogen/include/ui_MainWindow.h \
+ C:/Users/manoj/Desktop/ids/build/qt_gui/ids_gui_autogen/include/ui_MainWindow.h \
  C:/msys64/mingw64/include/qt6/QtCore/QVariant \
  C:/msys64/mingw64/include/qt6/QtCore/qvariant.h \
  C:/msys64/mingw64/include/qt6/QtWidgets/QApplication \
@@ -404,19 +407,8 @@ qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj: \
  C:/msys64/mingw64/include/qt6/QtGui/qinputmethod.h \
  C:/msys64/mingw64/include/qt6/QtCore/qlocale.h \
  C:/msys64/mingw64/include/qt6/QtGui/qguiapplication_platform.h \
- C:/msys64/mingw64/include/qt6/QtWidgets/QMainWindow \
- C:/msys64/mingw64/include/qt6/QtWidgets/QStatusBar \
- C:/msys64/mingw64/include/qt6/QtWidgets/qstatusbar.h \
- C:/msys64/mingw64/include/qt6/QtWidgets/QWidget \
- C:/msys64/mingw64/include/qt6/QtWidgets/qwidget.h \
- C:/msys64/mingw64/include/qt6/QtWidgets/QTableWidget \
- C:/msys64/mingw64/include/qt6/QtWidgets/qtablewidget.h \
- C:/msys64/mingw64/include/qt6/QtWidgets/qtableview.h \
- C:/msys64/mingw64/include/qt6/QtWidgets/qabstractitemview.h \
- C:/msys64/mingw64/include/qt6/QtWidgets/qabstractscrollarea.h \
- C:/msys64/mingw64/include/qt6/QtWidgets/qframe.h \
- C:/msys64/mingw64/include/qt6/QtCore/qabstractitemmodel.h \
- C:/msys64/mingw64/include/qt6/QtCore/qitemselectionmodel.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QComboBox \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qcombobox.h \
  C:/msys64/mingw64/include/qt6/QtWidgets/qabstractitemdelegate.h \
  C:/msys64/mingw64/include/qt6/QtWidgets/qstyleoption.h \
  C:/msys64/mingw64/include/qt6/QtWidgets/qabstractspinbox.h \
@@ -427,24 +419,47 @@ qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj: \
  C:/msys64/mingw64/include/qt6/QtWidgets/qstyle.h \
  C:/msys64/mingw64/include/qt6/QtWidgets/qtabbar.h \
  C:/msys64/mingw64/include/qt6/QtWidgets/qrubberband.h \
- C:/msys64/mingw64/include/qt6/QtWidgets/QHeaderView \
- C:/msys64/mingw64/include/qt6/QtWidgets/qheaderview.h \
- C:/msys64/mingw64/include/qt6/QtWidgets/QVBoxLayout \
- C:/msys64/mingw64/include/qt6/QtWidgets/qboxlayout.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qframe.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qabstractitemmodel.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QFormLayout \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qformlayout.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QLayout \
  C:/msys64/mingw64/include/qt6/QtWidgets/qlayout.h \
  C:/msys64/mingw64/include/qt6/QtWidgets/qlayoutitem.h \
  C:/msys64/mingw64/include/qt6/QtWidgets/qboxlayout.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qlayout.h \
  C:/msys64/mingw64/include/qt6/QtWidgets/qgridlayout.h \
  C:/msys64/mingw64/include/qt6/QtWidgets/QHBoxLayout \
- C:/msys64/mingw64/include/qt6/QtWidgets/QPushButton \
- C:/msys64/mingw64/include/qt6/QtWidgets/qpushbutton.h \
- C:/msys64/mingw64/include/qt6/QtWidgets/qabstractbutton.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qboxlayout.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QHeaderView \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qheaderview.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qabstractitemview.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qabstractscrollarea.h \
+ C:/msys64/mingw64/include/qt6/QtCore/qitemselectionmodel.h \
  C:/msys64/mingw64/include/qt6/QtWidgets/QLabel \
  C:/msys64/mingw64/include/qt6/QtWidgets/qlabel.h \
  C:/msys64/mingw64/include/qt6/QtGui/qpicture.h \
  C:/msys64/mingw64/include/qt6/QtCore/qiodevice.h \
  C:/msys64/mingw64/include/qt6/QtGui/qtextdocument.h \
  C:/msys64/mingw64/include/qt6/QtCore/qurl.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QMainWindow \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QPushButton \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qpushbutton.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qabstractbutton.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QStackedWidget \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qstackedwidget.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QTableWidget \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qtablewidget.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qtableview.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QVBoxLayout \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QWidget \
+ C:/msys64/mingw64/include/qt6/QtWidgets/qwidget.h \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QTableWidget \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QHeaderView \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QVBoxLayout \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QHBoxLayout \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QPushButton \
+ C:/msys64/mingw64/include/qt6/QtWidgets/QLabel \
  C:/msys64/mingw64/include/qt6/QtWidgets/QTextEdit \
  C:/msys64/mingw64/include/qt6/QtWidgets/qtextedit.h \
  C:/msys64/mingw64/include/qt6/QtGui/qtextoption.h \

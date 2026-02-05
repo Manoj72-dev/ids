@@ -1,13 +1,13 @@
 {
 	"AUTOGEN_COMMAND_LINE_LENGTH_MAX" : 32000,
-	"BUILD_DIR" : "C:/Users/manoj/Desktop/TRY/build/qt_gui/ids_gui_autogen",
-	"CMAKE_BINARY_DIR" : "C:/Users/manoj/Desktop/TRY/build",
-	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/manoj/Desktop/TRY/build/qt_gui",
-	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/manoj/Desktop/TRY/qt_gui",
+	"BUILD_DIR" : "C:/Users/manoj/Desktop/ids/build/qt_gui/ids_gui_autogen",
+	"CMAKE_BINARY_DIR" : "C:/Users/manoj/Desktop/ids/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/manoj/Desktop/ids/build/qt_gui",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/manoj/Desktop/ids/qt_gui",
 	"CMAKE_EXECUTABLE" : "C:/msys64/mingw64/bin/cmake.exe",
 	"CMAKE_LIST_FILES" : 
 	[
-		"C:/Users/manoj/Desktop/TRY/qt_gui/CMakeLists.txt",
+		"C:/Users/manoj/Desktop/ids/qt_gui/CMakeLists.txt",
 		"C:/msys64/mingw64/lib/cmake/Qt6/Qt6ConfigVersion.cmake",
 		"C:/msys64/mingw64/lib/cmake/Qt6/Qt6ConfigVersionImpl.cmake",
 		"C:/msys64/mingw64/lib/cmake/Qt6/Qt6Config.cmake",
@@ -271,28 +271,28 @@
 		"C:/msys64/mingw64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginAdditionalTargetInfo.cmake",
 		"C:/msys64/mingw64/lib/cmake/Qt6Widgets/Qt6WidgetsVersionlessAliasTargets.cmake"
 	],
-	"CMAKE_SOURCE_DIR" : "C:/Users/manoj/Desktop/TRY",
+	"CMAKE_SOURCE_DIR" : "C:/Users/manoj/Desktop/ids",
 	"CROSS_CONFIG" : false,
-	"DEP_FILE" : "C:/Users/manoj/Desktop/TRY/build/qt_gui/ids_gui_autogen/deps",
+	"DEP_FILE" : "C:/Users/manoj/Desktop/ids/build/qt_gui/ids_gui_autogen/deps",
 	"DEP_FILE_RULE_NAME" : "ids_gui_autogen/timestamp",
 	"HEADERS" : 
 	[
 		[
-			"C:/Users/manoj/Desktop/TRY/qt_gui/MainWindow.h",
+			"C:/Users/manoj/Desktop/ids/qt_gui/MainWindow.h",
 			"MU",
 			"EWIEGA46WW/moc_MainWindow.cpp",
 			null
 		],
 		[
-			"C:/Users/manoj/Desktop/TRY/qt_gui/ids_wrapper.h",
+			"C:/Users/manoj/Desktop/ids/qt_gui/ids_wrapper.h",
 			"MU",
 			"EWIEGA46WW/moc_ids_wrapper.cpp",
 			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
-	"INCLUDE_DIR" : "C:/Users/manoj/Desktop/TRY/build/qt_gui/ids_gui_autogen/include",
-	"MOC_COMPILATION_FILE" : "C:/Users/manoj/Desktop/TRY/build/qt_gui/ids_gui_autogen/mocs_compilation.cpp",
+	"INCLUDE_DIR" : "C:/Users/manoj/Desktop/ids/build/qt_gui/ids_gui_autogen/include",
+	"MOC_COMPILATION_FILE" : "C:/Users/manoj/Desktop/ids/build/qt_gui/ids_gui_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
 		"MINGW_HAS_SECURE_API=1",
@@ -318,8 +318,9 @@
 	],
 	"MOC_INCLUDES" : 
 	[
-		"C:/Users/manoj/Desktop/TRY/ids_core/include",
-		"C:/Users/manoj/Desktop/TRY/ids_core/include",
+		"C:/npcap-sdk-1.16/Include",
+		"C:/Users/manoj/Desktop/ids/ids_core/include",
+		"C:/Users/manoj/Desktop/ids/ids_core/include",
 		"C:/msys64/mingw64/include/qt6/QtWidgets",
 		"C:/msys64/mingw64/include/qt6",
 		"C:/msys64/mingw64/include/qt6/QtCore",
@@ -352,22 +353,22 @@
 		"-E",
 		"C:/msys64/mingw64/share/cmake/Modules/CMakeCXXCompilerABI.cpp"
 	],
-	"MOC_PREDEFS_FILE" : "C:/Users/manoj/Desktop/TRY/build/qt_gui/ids_gui_autogen/moc_predefs.h",
+	"MOC_PREDEFS_FILE" : "C:/Users/manoj/Desktop/ids/build/qt_gui/ids_gui_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : [],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 6,
-	"PARSE_CACHE_FILE" : "C:/Users/manoj/Desktop/TRY/build/qt_gui/CMakeFiles/ids_gui_autogen.dir/ParseCache.txt",
+	"PARSE_CACHE_FILE" : "C:/Users/manoj/Desktop/ids/build/qt_gui/CMakeFiles/ids_gui_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "C:/msys64/mingw64/share/qt6/bin/moc.exe",
 	"QT_UIC_EXECUTABLE" : "C:/msys64/mingw64/share/qt6/bin/uic.exe",
 	"QT_VERSION_MAJOR" : 6,
 	"QT_VERSION_MINOR" : 10,
-	"SETTINGS_FILE" : "C:/Users/manoj/Desktop/TRY/build/qt_gui/CMakeFiles/ids_gui_autogen.dir/AutogenUsed.txt",
+	"SETTINGS_FILE" : "C:/Users/manoj/Desktop/ids/build/qt_gui/CMakeFiles/ids_gui_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "C:/Users/manoj/Desktop/TRY/qt_gui/MainWindow.cpp", "MU", null ],
-		[ "C:/Users/manoj/Desktop/TRY/qt_gui/ids_wrapper.cpp", "MU", null ],
-		[ "C:/Users/manoj/Desktop/TRY/qt_gui/main.cpp", "MU", null ]
+		[ "C:/Users/manoj/Desktop/ids/qt_gui/MainWindow.cpp", "MU", null ],
+		[ "C:/Users/manoj/Desktop/ids/qt_gui/ids_wrapper.cpp", "MU", null ],
+		[ "C:/Users/manoj/Desktop/ids/qt_gui/main.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

@@ -52,10 +52,10 @@ RM = C:\msys64\mingw64\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\manoj\Desktop\TRY
+CMAKE_SOURCE_DIR = C:\Users\manoj\Desktop\ids
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\manoj\Desktop\TRY\build
+CMAKE_BINARY_DIR = C:\Users\manoj\Desktop\ids\build
 
 # Include any dependencies generated for this target.
 include qt_gui/CMakeFiles/ids_gui.dir/depend.make
@@ -71,9 +71,9 @@ include qt_gui/CMakeFiles/ids_gui.dir/flags.make
 qt_gui/ids_gui_autogen/timestamp: C:/msys64/mingw64/share/qt6/bin/moc.exe
 qt_gui/ids_gui_autogen/timestamp: C:/msys64/mingw64/share/qt6/bin/uic.exe
 qt_gui/ids_gui_autogen/timestamp: qt_gui/CMakeFiles/ids_gui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\manoj\Desktop\TRY\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target ids_gui"
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && C:\msys64\mingw64\bin\cmake.exe -E cmake_autogen C:/Users/manoj/Desktop/TRY/build/qt_gui/CMakeFiles/ids_gui_autogen.dir/AutogenInfo.json ""
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && C:\msys64\mingw64\bin\cmake.exe -E touch C:/Users/manoj/Desktop/TRY/build/qt_gui/ids_gui_autogen/timestamp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\manoj\Desktop\ids\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target ids_gui"
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && C:\msys64\mingw64\bin\cmake.exe -E cmake_autogen C:/Users/manoj/Desktop/ids/build/qt_gui/CMakeFiles/ids_gui_autogen.dir/AutogenInfo.json ""
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && C:\msys64\mingw64\bin\cmake.exe -E touch C:/Users/manoj/Desktop/ids/build/qt_gui/ids_gui_autogen/timestamp
 
 qt_gui/CMakeFiles/ids_gui.dir/codegen:
 .PHONY : qt_gui/CMakeFiles/ids_gui.dir/codegen
@@ -82,61 +82,61 @@ qt_gui/CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.obj: qt_gui/C
 qt_gui/CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.obj: qt_gui/CMakeFiles/ids_gui.dir/includes_CXX.rsp
 qt_gui/CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.obj: qt_gui/ids_gui_autogen/mocs_compilation.cpp
 qt_gui/CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.obj: qt_gui/CMakeFiles/ids_gui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\manoj\Desktop\TRY\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object qt_gui/CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.obj"
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT qt_gui/CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.obj -MF CMakeFiles\ids_gui.dir\ids_gui_autogen\mocs_compilation.cpp.obj.d -o CMakeFiles\ids_gui.dir\ids_gui_autogen\mocs_compilation.cpp.obj -c C:\Users\manoj\Desktop\TRY\build\qt_gui\ids_gui_autogen\mocs_compilation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\manoj\Desktop\ids\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object qt_gui/CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.obj"
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT qt_gui/CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.obj -MF CMakeFiles\ids_gui.dir\ids_gui_autogen\mocs_compilation.cpp.obj.d -o CMakeFiles\ids_gui.dir\ids_gui_autogen\mocs_compilation.cpp.obj -c C:\Users\manoj\Desktop\ids\build\qt_gui\ids_gui_autogen\mocs_compilation.cpp
 
 qt_gui/CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.i"
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\manoj\Desktop\TRY\build\qt_gui\ids_gui_autogen\mocs_compilation.cpp > CMakeFiles\ids_gui.dir\ids_gui_autogen\mocs_compilation.cpp.i
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\manoj\Desktop\ids\build\qt_gui\ids_gui_autogen\mocs_compilation.cpp > CMakeFiles\ids_gui.dir\ids_gui_autogen\mocs_compilation.cpp.i
 
 qt_gui/CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ids_gui.dir/ids_gui_autogen/mocs_compilation.cpp.s"
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\manoj\Desktop\TRY\build\qt_gui\ids_gui_autogen\mocs_compilation.cpp -o CMakeFiles\ids_gui.dir\ids_gui_autogen\mocs_compilation.cpp.s
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\manoj\Desktop\ids\build\qt_gui\ids_gui_autogen\mocs_compilation.cpp -o CMakeFiles\ids_gui.dir\ids_gui_autogen\mocs_compilation.cpp.s
 
 qt_gui/CMakeFiles/ids_gui.dir/main.cpp.obj: qt_gui/CMakeFiles/ids_gui.dir/flags.make
 qt_gui/CMakeFiles/ids_gui.dir/main.cpp.obj: qt_gui/CMakeFiles/ids_gui.dir/includes_CXX.rsp
-qt_gui/CMakeFiles/ids_gui.dir/main.cpp.obj: C:/Users/manoj/Desktop/TRY/qt_gui/main.cpp
+qt_gui/CMakeFiles/ids_gui.dir/main.cpp.obj: C:/Users/manoj/Desktop/ids/qt_gui/main.cpp
 qt_gui/CMakeFiles/ids_gui.dir/main.cpp.obj: qt_gui/CMakeFiles/ids_gui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\manoj\Desktop\TRY\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object qt_gui/CMakeFiles/ids_gui.dir/main.cpp.obj"
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT qt_gui/CMakeFiles/ids_gui.dir/main.cpp.obj -MF CMakeFiles\ids_gui.dir\main.cpp.obj.d -o CMakeFiles\ids_gui.dir\main.cpp.obj -c C:\Users\manoj\Desktop\TRY\qt_gui\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\manoj\Desktop\ids\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object qt_gui/CMakeFiles/ids_gui.dir/main.cpp.obj"
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT qt_gui/CMakeFiles/ids_gui.dir/main.cpp.obj -MF CMakeFiles\ids_gui.dir\main.cpp.obj.d -o CMakeFiles\ids_gui.dir\main.cpp.obj -c C:\Users\manoj\Desktop\ids\qt_gui\main.cpp
 
 qt_gui/CMakeFiles/ids_gui.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ids_gui.dir/main.cpp.i"
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\manoj\Desktop\TRY\qt_gui\main.cpp > CMakeFiles\ids_gui.dir\main.cpp.i
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\manoj\Desktop\ids\qt_gui\main.cpp > CMakeFiles\ids_gui.dir\main.cpp.i
 
 qt_gui/CMakeFiles/ids_gui.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ids_gui.dir/main.cpp.s"
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\manoj\Desktop\TRY\qt_gui\main.cpp -o CMakeFiles\ids_gui.dir\main.cpp.s
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\manoj\Desktop\ids\qt_gui\main.cpp -o CMakeFiles\ids_gui.dir\main.cpp.s
 
 qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.obj: qt_gui/CMakeFiles/ids_gui.dir/flags.make
 qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.obj: qt_gui/CMakeFiles/ids_gui.dir/includes_CXX.rsp
-qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.obj: C:/Users/manoj/Desktop/TRY/qt_gui/ids_wrapper.cpp
+qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.obj: C:/Users/manoj/Desktop/ids/qt_gui/ids_wrapper.cpp
 qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.obj: qt_gui/CMakeFiles/ids_gui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\manoj\Desktop\TRY\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.obj"
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.obj -MF CMakeFiles\ids_gui.dir\ids_wrapper.cpp.obj.d -o CMakeFiles\ids_gui.dir\ids_wrapper.cpp.obj -c C:\Users\manoj\Desktop\TRY\qt_gui\ids_wrapper.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\manoj\Desktop\ids\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.obj"
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.obj -MF CMakeFiles\ids_gui.dir\ids_wrapper.cpp.obj.d -o CMakeFiles\ids_gui.dir\ids_wrapper.cpp.obj -c C:\Users\manoj\Desktop\ids\qt_gui\ids_wrapper.cpp
 
 qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ids_gui.dir/ids_wrapper.cpp.i"
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\manoj\Desktop\TRY\qt_gui\ids_wrapper.cpp > CMakeFiles\ids_gui.dir\ids_wrapper.cpp.i
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\manoj\Desktop\ids\qt_gui\ids_wrapper.cpp > CMakeFiles\ids_gui.dir\ids_wrapper.cpp.i
 
 qt_gui/CMakeFiles/ids_gui.dir/ids_wrapper.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ids_gui.dir/ids_wrapper.cpp.s"
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\manoj\Desktop\TRY\qt_gui\ids_wrapper.cpp -o CMakeFiles\ids_gui.dir\ids_wrapper.cpp.s
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\manoj\Desktop\ids\qt_gui\ids_wrapper.cpp -o CMakeFiles\ids_gui.dir\ids_wrapper.cpp.s
 
 qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj: qt_gui/CMakeFiles/ids_gui.dir/flags.make
 qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj: qt_gui/CMakeFiles/ids_gui.dir/includes_CXX.rsp
-qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj: C:/Users/manoj/Desktop/TRY/qt_gui/MainWindow.cpp
+qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj: C:/Users/manoj/Desktop/ids/qt_gui/MainWindow.cpp
 qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj: qt_gui/CMakeFiles/ids_gui.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\manoj\Desktop\TRY\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj"
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj -MF CMakeFiles\ids_gui.dir\MainWindow.cpp.obj.d -o CMakeFiles\ids_gui.dir\MainWindow.cpp.obj -c C:\Users\manoj\Desktop\TRY\qt_gui\MainWindow.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\manoj\Desktop\ids\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj"
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.obj -MF CMakeFiles\ids_gui.dir\MainWindow.cpp.obj.d -o CMakeFiles\ids_gui.dir\MainWindow.cpp.obj -c C:\Users\manoj\Desktop\ids\qt_gui\MainWindow.cpp
 
 qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ids_gui.dir/MainWindow.cpp.i"
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\manoj\Desktop\TRY\qt_gui\MainWindow.cpp > CMakeFiles\ids_gui.dir\MainWindow.cpp.i
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\manoj\Desktop\ids\qt_gui\MainWindow.cpp > CMakeFiles\ids_gui.dir\MainWindow.cpp.i
 
 qt_gui/CMakeFiles/ids_gui.dir/MainWindow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ids_gui.dir/MainWindow.cpp.s"
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\manoj\Desktop\TRY\qt_gui\MainWindow.cpp -o CMakeFiles\ids_gui.dir\MainWindow.cpp.s
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\manoj\Desktop\ids\qt_gui\MainWindow.cpp -o CMakeFiles\ids_gui.dir\MainWindow.cpp.s
 
 # Object files for target ids_gui
 ids_gui_OBJECTS = \
@@ -160,18 +160,18 @@ qt_gui/ids_gui.exe: C:/msys64/mingw64/lib/libQt6Core.dll.a
 qt_gui/ids_gui.exe: qt_gui/CMakeFiles/ids_gui.dir/linkLibs.rsp
 qt_gui/ids_gui.exe: qt_gui/CMakeFiles/ids_gui.dir/objects1.rsp
 qt_gui/ids_gui.exe: qt_gui/CMakeFiles/ids_gui.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\manoj\Desktop\TRY\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable ids_gui.exe"
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\ids_gui.dir\link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\manoj\Desktop\ids\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable ids_gui.exe"
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\ids_gui.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 qt_gui/CMakeFiles/ids_gui.dir/build: qt_gui/ids_gui.exe
 .PHONY : qt_gui/CMakeFiles/ids_gui.dir/build
 
 qt_gui/CMakeFiles/ids_gui.dir/clean:
-	cd /d C:\Users\manoj\Desktop\TRY\build\qt_gui && $(CMAKE_COMMAND) -P CMakeFiles\ids_gui.dir\cmake_clean.cmake
+	cd /d C:\Users\manoj\Desktop\ids\build\qt_gui && $(CMAKE_COMMAND) -P CMakeFiles\ids_gui.dir\cmake_clean.cmake
 .PHONY : qt_gui/CMakeFiles/ids_gui.dir/clean
 
 qt_gui/CMakeFiles/ids_gui.dir/depend: qt_gui/ids_gui_autogen/timestamp
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\manoj\Desktop\TRY C:\Users\manoj\Desktop\TRY\qt_gui C:\Users\manoj\Desktop\TRY\build C:\Users\manoj\Desktop\TRY\build\qt_gui C:\Users\manoj\Desktop\TRY\build\qt_gui\CMakeFiles\ids_gui.dir\DependInfo.cmake "--color=$(COLOR)" ids_gui
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\manoj\Desktop\ids C:\Users\manoj\Desktop\ids\qt_gui C:\Users\manoj\Desktop\ids\build C:\Users\manoj\Desktop\ids\build\qt_gui C:\Users\manoj\Desktop\ids\build\qt_gui\CMakeFiles\ids_gui.dir\DependInfo.cmake "--color=$(COLOR)" ids_gui
 .PHONY : qt_gui/CMakeFiles/ids_gui.dir/depend
 

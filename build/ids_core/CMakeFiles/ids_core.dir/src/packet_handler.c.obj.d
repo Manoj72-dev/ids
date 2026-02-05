@@ -1,10 +1,10 @@
 ids_core/CMakeFiles/ids_core.dir/src/packet_handler.c.obj: \
- C:\Users\manoj\Desktop\TRY\ids_core\src\packet_handler.c \
- C:/Users/manoj/Desktop/TRY/ids_core/include/packet_handler.h \
- C:/msys64/mingw64/include/pcap/pcap.h \
- C:/msys64/mingw64/include/pcap/funcattrs.h \
- C:/msys64/mingw64/include/pcap/compiler-tests.h \
- C:/msys64/mingw64/include/pcap/pcap-inttypes.h \
+ C:\Users\manoj\Desktop\ids\ids_core\src\packet_handler.c \
+ C:/Users/manoj/Desktop/ids/ids_core/include/packet_handler.h \
+ C:/npcap-sdk-1.16/Include/pcap/pcap.h \
+ C:/npcap-sdk-1.16/Include/pcap/funcattrs.h \
+ C:/npcap-sdk-1.16/Include/pcap/compiler-tests.h \
+ C:/npcap-sdk-1.16/Include/pcap/pcap-inttypes.h \
  C:/msys64/mingw64/include/inttypes.h C:/msys64/mingw64/include/crtdefs.h \
  C:/msys64/mingw64/include/corecrt.h C:/msys64/mingw64/include/_mingw.h \
  C:/msys64/mingw64/include/_mingw_mac.h \
@@ -260,20 +260,20 @@ ids_core/CMakeFiles/ids_core.dir/src/packet_handler.c.obj: \
  C:/msys64/mingw64/include/psdk_inc/_wsa_errnos.h \
  C:/msys64/mingw64/include/qos.h C:/msys64/mingw64/include/io.h \
  C:/msys64/mingw64/include/_mingw_off_t.h \
- C:/msys64/mingw64/include/pcap/socket.h \
+ C:/npcap-sdk-1.16/Include/pcap/socket.h \
  C:/msys64/mingw64/include/ws2tcpip.h \
  C:/msys64/mingw64/include/ws2ipdef.h C:/msys64/mingw64/include/in6addr.h \
  C:/msys64/mingw64/include/psdk_inc/_ip_mreq1.h \
- C:/msys64/mingw64/include/mstcpip.h C:/msys64/mingw64/include/pcap/bpf.h \
- C:/msys64/mingw64/include/pcap/dlt.h C:/msys64/mingw64/include/stdio.h \
+ C:/msys64/mingw64/include/mstcpip.h C:/npcap-sdk-1.16/Include/pcap/bpf.h \
+ C:/npcap-sdk-1.16/Include/pcap/dlt.h C:/msys64/mingw64/include/stdio.h \
  C:/msys64/mingw64/include/corecrt_stdio_config.h \
  C:/msys64/mingw64/include/swprintf.inl \
  C:/msys64/mingw64/include/sec_api/stdio_s.h \
- C:/Users/manoj/Desktop/TRY/ids_core/include/pkt_info.h \
- C:/Users/manoj/Desktop/TRY/ids_core/include/datalink.h \
- C:/Users/manoj/Desktop/TRY/ids_core/include/platform.h \
- C:/Users/manoj/Desktop/TRY/ids_core/include/network.h \
- C:/Users/manoj/Desktop/TRY/ids_core/include/transport.h \
- C:/Users/manoj/Desktop/TRY/ids_core/include/rules.h \
- C:/Users/manoj/Desktop/TRY/ids_core/include/alerts.h \
- C:/Users/manoj/Desktop/TRY/ids_core/include/ml_bridge.h
+ C:/Users/manoj/Desktop/ids/ids_core/include/pkt_info.h \
+ C:/Users/manoj/Desktop/ids/ids_core/include/datalink.h \
+ C:/Users/manoj/Desktop/ids/ids_core/include/platform.h \
+ C:/Users/manoj/Desktop/ids/ids_core/include/network.h \
+ C:/Users/manoj/Desktop/ids/ids_core/include/transport.h \
+ C:/Users/manoj/Desktop/ids/ids_core/include/rules.h \
+ C:/Users/manoj/Desktop/ids/ids_core/include/alerts.h \
+ C:/Users/manoj/Desktop/ids/ids_core/include/ml_bridge.h

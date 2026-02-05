@@ -1,7 +1,7 @@
 ids_core/CMakeFiles/ids_core.dir/src/rules.c.obj: \
- C:\Users\manoj\Desktop\TRY\ids_core\src\rules.c \
- C:/Users/manoj/Desktop/TRY/ids_core/include/rules.h \
- C:/Users/manoj/Desktop/TRY/ids_core/include/pkt_info.h \
+ C:\Users\manoj\Desktop\ids\ids_core\src\rules.c \
+ C:/Users/manoj/Desktop/ids/ids_core/include/rules.h \
+ C:/Users/manoj/Desktop/ids/ids_core/include/pkt_info.h \
  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stdint.h \
  C:/msys64/mingw64/include/stdint.h C:/msys64/mingw64/include/crtdefs.h \
  C:/msys64/mingw64/include/corecrt.h C:/msys64/mingw64/include/_mingw.h \
@@ -11,7 +11,7 @@ ids_core/CMakeFiles/ids_core.dir/src/rules.c.obj: \
  C:/msys64/mingw64/include/sdks/_mingw_ddk.h \
  C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/stddef.h \
  C:/msys64/mingw64/include/stddef.h \
- C:/Users/manoj/Desktop/TRY/ids_core/include/alerts.h \
+ C:/Users/manoj/Desktop/ids/ids_core/include/alerts.h \
  C:/msys64/mingw64/include/stdio.h \
  C:/msys64/mingw64/include/corecrt_stdio_config.h \
  C:/msys64/mingw64/include/_mingw_off_t.h \

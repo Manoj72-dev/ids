@@ -1,6 +1,6 @@
 ids_core/CMakeFiles/ids_core.dir/src/ids_api.c.obj: \
- C:\Users\manoj\Desktop\TRY\ids_core\src\ids_api.c \
- C:/Users/manoj/Desktop/TRY/ids_core/include/ids_api.h \
+ C:\Users\manoj\Desktop\ids\ids_core\src\ids_api.c \
+ C:/Users/manoj/Desktop/ids/ids_core/include/ids_api.h \
  C:/msys64/mingw64/include/stdio.h \
  C:/msys64/mingw64/include/corecrt_stdio_config.h \
  C:/msys64/mingw64/include/corecrt.h C:/msys64/mingw64/include/_mingw.h \
