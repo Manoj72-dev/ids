@@ -1,0 +1,13 @@
+
+[2026-03-16 02:18:25] ALERT sid=1001 rule=tcp#1001 proto=tcp severity=medium iface=eth0 TCP SYN observed 192.168.25.128:35384 -> 172.64.155.209:443 src=192.168.25.128:35384 dst=172.64.155.209:443
+[2026-03-16 02:18:25] ALERT sid=1001 rule=tcp#1001 proto=tcp severity=medium iface=eth0 TCP SYN observed 192.168.25.128:54708 -> 104.18.32.47:443 src=192.168.25.128:54708 dst=104.18.32.47:443
+[2026-03-16 02:18:25] ALERT sid=1001 rule=tcp#1001 proto=tcp severity=medium iface=eth0 TCP SYN observed 192.168.25.128:35400 -> 172.64.155.209:443 src=192.168.25.128:35400 dst=172.64.155.209:443
+[2026-03-16 02:18:25] ALERT sid=1001 rule=tcp#1001 proto=tcp severity=medium iface=eth0 TCP SYN observed 172.64.155.209:443 -> 192.168.25.128:35384 src=172.64.155.209:443 dst=192.168.25.128:35384
+[2026-03-16 02:18:25] ALERT sid=1102 rule=tcp#1102 proto=tcp severity=medium iface=eth0 Privileged source port traffic 172.64.155.209:443 -> 192.168.25.128:35384 src=172.64.155.209:443 dst=192.168.25.128:35384
+[2026-03-16 02:18:25] ALERT sid=1001 rule=tcp#1001 proto=tcp severity=medium iface=eth0 TCP SYN observed 104.18.32.47:443 -> 192.168.25.128:54708 src=104.18.32.47:443 dst=192.168.25.128:54708
+[2026-03-16 02:18:25] ALERT sid=1102 rule=tcp#1102 proto=tcp severity=medium iface=eth0 Privileged source port traffic 104.18.32.47:443 -> 192.168.25.128:54708 src=104.18.32.47:443 dst=192.168.25.128:54708
+[2026-03-16 02:18:25] ALERT sid=1001 rule=tcp#1001 proto=tcp severity=medium iface=eth0 TCP SYN observed 172.64.155.209:443 -> 192.168.25.128:35400 src=172.64.155.209:443 dst=192.168.25.128:35400
+[2026-03-16 02:18:25] ALERT sid=1102 rule=tcp#1102 proto=tcp severity=medium iface=eth0 Privileged source port traffic 172.64.155.209:443 -> 192.168.25.128:35400 src=172.64.155.209:443 dst=192.168.25.128:35400
+[2026-03-16 02:18:30] ALERT sid=1001 rule=tcp#1001 proto=tcp severity=medium iface=eth0 TCP SYN observed 192.168.25.128:50474 -> 104.18.37.228:443 src=192.168.25.128:50474 dst=104.18.37.228:443
+[2026-03-16 02:18:30] ALERT sid=1001 rule=tcp#1001 proto=tcp severity=medium iface=eth0 TCP SYN observed 104.18.37.228:443 -> 192.168.25.128:50474 src=104.18.37.228:443 dst=192.168.25.128:50474
+[2026-03-16 02:18:30] ALERT sid=1102 rule=tcp#1102 proto=tcp severity=medium iface=eth0 Privileged source port traffic 104.18.37.228:443 -> 192.168.25.128:50474 src=104.18.37.228:443 dst=192.168.25.128:50474

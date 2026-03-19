@@ -1,0 +1,4 @@
+alert tcp 192.168.1.0/24 any -> any 80 (msg:"CIDR web traffic"; severity:medium; sid:2001; flags:S;)
+alert tcp any 1:1024 -> any any (msg:"Privileged source port"; severity:low; sid:2002; flags:S;)
+alert tcp any any <> 10.0.0.5 any (msg:"Bidirectional host match"; severity:medium; sid:2003; flags:S;)
+alert tcp any any -> any 443 (msg:"Threshold trigger"; severity:high; sid:2004; flags:S; threshold:3;)
