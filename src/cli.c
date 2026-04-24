@@ -34,7 +34,8 @@ void print_help(void)
            CAPTURE_DEFAULT_PACKET_COUNT);
     printf("  -v             Show packet details in foreground mode\n");
     printf("  --log-packets  Write packet summaries to cids.log in daemon mode\n");
-    printf("  -p <proto>     Filter protocol\n\n");
+    printf("  -p <filter>    Apply a libpcap/BPF filter, e.g. \"tcp port 80\"\n");
+    printf("  -f <path>      Load rules from a specific file\n\n");
     printf("System\n");
     printf("  -l             List interfaces\n");
     printf("  -r             Read stored alerts\n");
@@ -143,6 +144,7 @@ int parse_cli(int argc, char *argv[], CLIOptions *opts)
         {"daemon", no_argument, 0, 'd'},
         {"count", required_argument, 0, 'n'},
         {"log-packets", no_argument, 0, 'P'},
+        {"rules", required_argument, 0, 'f'},
         {"stop", no_argument, 0, 's'},
         {"status", no_argument, 0, 't'},
         {"protocol", required_argument, 0, 'p'},
@@ -151,7 +153,7 @@ int parse_cli(int argc, char *argv[], CLIOptions *opts)
         {0, 0, 0, 0}
     };
 
-    while ((option = getopt_long(argc, argv, "i:n:vp:lrcdstVh", long_options, NULL)) != -1) {
+    while ((option = getopt_long(argc, argv, "i:n:vp:f:lrcdstVh", long_options, NULL)) != -1) {
         switch (option) {
             case 'i':
                 copy_arg(opts->interface, sizeof(opts->interface), optarg);
@@ -167,6 +169,9 @@ int parse_cli(int argc, char *argv[], CLIOptions *opts)
                 break;
             case 'p':
                 copy_arg(opts->protocol, sizeof(opts->protocol), optarg);
+                break;
+            case 'f':
+                copy_arg(opts->rule_file, sizeof(opts->rule_file), optarg);
                 break;
             case 'l':
                 opts->list_interfaces = 1;

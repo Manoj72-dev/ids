@@ -1,0 +1,72 @@
+# Starter runtime rules for CIDS.
+# Format:
+# action protocol src_ip src_port direction dst_ip dst_port (options;)
+
+# Detect inbound HTTP requests.
+alert tcp any any -> any 80 (msg:"HTTP request observed"; severity:low; sid:1001; flags:S;)
+
+# Detect inbound HTTPS requests.
+alert tcp any any -> any 443 (msg:"HTTPS request observed"; severity:low; sid:1002; flags:S;)
+
+# Detect ICMP echo requests.
+alert icmp any any -> any any (msg:"ICMP traffic observed"; severity:medium; sid:1003; icmp_type:8;)
+
+# Detect ARP requests on the local network.
+alert arp any any -> any any (msg:"ARP request observed"; severity:low; sid:1004; arp_opcode:1;)
+
+# Raise a higher-severity alert for repeated connection attempts to SSH.
+alert tcp any any -> any 22 (msg:"Repeated SSH connection attempts"; severity:high; sid:1005; flags:S; threshold:5;)
+
+# Detect Telnet traffic.
+alert tcp any any -> any 23 (msg:"Telnet connection observed"; severity:high; sid:1006; flags:S;)
+
+# Detect FTP control connections.
+alert tcp any any -> any 21 (msg:"FTP control connection observed"; severity:medium; sid:1007; flags:S;)
+
+# Detect SMB traffic.
+alert tcp any any -> any 445 (msg:"SMB connection observed"; severity:medium; sid:1008; flags:S;)
+
+# Detect RDP traffic.
+alert tcp any any -> any 3389 (msg:"RDP connection observed"; severity:medium; sid:1009; flags:S;)
+
+# Detect DNS queries over UDP.
+alert udp any any -> any 53 (msg:"DNS query observed"; severity:low; sid:1010;)
+
+# Detect NTP traffic.
+alert udp any any -> any 123 (msg:"NTP traffic observed"; severity:low; sid:1011;)
+
+# Detect TFTP traffic.
+alert udp any any -> any 69 (msg:"TFTP traffic observed"; severity:medium; sid:1012;)
+
+# Detect SNMP traffic.
+alert udp any any -> any 161 (msg:"SNMP traffic observed"; severity:medium; sid:1013;)
+
+# Detect repeated SYN probes to common admin ports.
+alert tcp any any -> any 23 (msg:"Repeated Telnet probes"; severity:high; sid:1014; flags:S; threshold:3;)
+alert tcp any any -> any 445 (msg:"Repeated SMB probes"; severity:high; sid:1015; flags:S; threshold:3;)
+alert tcp any any -> any 3389 (msg:"Repeated RDP probes"; severity:high; sid:1016; flags:S; threshold:3;)
+
+# Detect TCP reset traffic, which can indicate scan noise or service rejection.
+alert tcp any any -> any any (msg:"TCP reset observed"; severity:low; sid:1017; flags:R;)
+
+# Detect TCP FIN probes.
+alert tcp any any -> any any (msg:"TCP FIN packet observed"; severity:medium; sid:1018; flags:F;)
+
+# Detect NULL scans where no TCP flags are set.
+alert tcp any any -> any any (msg:"TCP NULL packet observed"; severity:high; sid:1019; flags:0;)
+
+# Detect IPv6 ICMP traffic.
+alert icmp6 any any -> any any (msg:"ICMPv6 traffic observed"; severity:low; sid:1020;)
+
+# Detect outbound connections to external web services from an internal lab subnet.
+alert tcp 192.168.0.0/16 any -> any 80 (msg:"Internal host reached external HTTP"; severity:low; sid:1021; flags:S;)
+alert tcp 192.168.0.0/16 any -> any 443 (msg:"Internal host reached external HTTPS"; severity:low; sid:1022; flags:S;)
+
+# Detect repeated outbound DNS requests from the same source.
+alert udp 192.168.0.0/16 any -> any 53 (msg:"Frequent outbound DNS requests"; severity:medium; sid:1023; threshold:10;)
+
+# Detect bidirectional traffic involving a sensitive host.
+alert tcp any any <> 10.0.0.5 any (msg:"Traffic involving monitored host 10.0.0.5"; severity:medium; sid:1024; flags:S;)
+
+# Detect ARP replies.
+alert arp any any -> any any (msg:"ARP reply observed"; severity:low; sid:1025; arp_opcode:2;)

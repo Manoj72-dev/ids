@@ -2,8 +2,8 @@
 #define CLI_H
 
 #define CLI_INTERFACE_MAX 32
-#define CLI_PROTOCOL_MAX  10
-#define CLI_PATH_MAX      128
+#define CLI_PROTOCOL_MAX  256
+#define CLI_PATH_MAX      256
 
 typedef struct
 {
